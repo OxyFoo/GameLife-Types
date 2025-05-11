@@ -1,0 +1,588 @@
+import { Nullable } from '@/Global/Utils';
+import { Reward } from '@/Class/Rewards';
+import { ActivitySaved } from '@/Data/User/Activities';
+import { TodoSaved } from '@/Data/User/Todos';
+import { AchievementItem } from '@/Data/User/Achievements';
+import { DataHashes, DataTypes } from '@/Data/App/index';
+import { Account } from '@/Data/Server/Account';
+import { AvatarObject, Stuff } from '@/Data/User/Inventory';
+import { Ad } from '@/Data/App/Ads';
+import { GeneratedSkill } from '@/Data/App/Skills';
+import { QuestSaved } from '@/Data/User/Quests';
+import { DailyQuestData } from '@/Data/User/DailyQuest';
+import { MissionItem } from '@/Data/User/Missions';
+import { Friend, UserOnline } from '@/Data/User/Multiplayer';
+import { NotificationInApp, NotificationInAppDataType } from '@/Class/NotificationsInApp';
+
+//
+// App
+//
+
+export interface ServerRequestCheckDate {
+    status: 'check-date';
+    dateIsValid: boolean;
+    callbackID?: string;
+}
+
+//
+// Authentification
+//
+
+export interface ServerRequestConnect {
+    status: 'connect';
+    result: 'ok' | 'maintenance' | 'update' | 'update-optional' | 'downdate' | 'error';
+    version?: string;
+    callbackID?: string;
+}
+
+export interface ServerRequestDisconnect {
+    status: 'disconnect';
+    result: 'ok' | 'error';
+    callbackID?: string;
+}
+
+export interface ServerRequestSignin {
+    status: 'signin';
+    result:
+        | 'ok'
+        | 'accountAlreadyExists'
+        | 'limitAccount'
+        | 'usernameAlreadyUsed'
+        | 'usernameIsBlacklisted'
+        | 'invalidUsername'
+        | 'error';
+    callbackID?: string;
+}
+
+export interface ServerRequestWaitMail {
+    status: 'wait-mail';
+    result: 'sent' | 'wait' | 'confirmed' | 'error';
+    remainingTime?: number;
+    token?: string;
+    callbackID?: string;
+}
+
+export interface ServerRequestLogin {
+    status: 'login';
+    result:
+        | 'free'
+        | 'mailNotSent'
+        | 'deviceLimitReached'
+        | 'waitMailConfirmation'
+        | 'error'
+        | {
+              devMode: boolean,
+              banned: boolean,
+              /** Used for mail confirmation when the user is not connected */
+              token?: string
+          };
+    callbackID?: string;
+}
+
+//
+// Account
+//
+
+export interface ServerRequestSetLang {
+    status: 'set-lang';
+    result: 'ok' | 'error';
+    callbackID?: string;
+}
+
+export interface ServerRequestSetUsername {
+    status: 'set-username';
+    result:
+        | 'ok'
+        | 'okButNotConfirmed'
+        | 'usernameIsAlreadyUsed'
+        | 'usernameIsAlreadyChanged'
+        | 'invalidUsername'
+        | 'error';
+    callbackID?: string;
+}
+
+export interface ServerRequestGetDevices {
+    status: 'get-devices';
+    result: 'ok' | 'error';
+    devices?: {
+        deviceName: string,
+        OSName: string,
+        OSVersion: string,
+        created: Date,
+        banned: boolean
+    }[];
+    callbackID?: string;
+}
+
+export interface ServerRequestDeleteAccount {
+    status: 'delete-account';
+    result: 'ok' | 'error';
+    callbackID?: string;
+}
+
+//
+// Data
+//
+
+export interface ServerRequestGetAppData {
+    status: 'get-app-data';
+    result: 'ok' | 'error';
+    data: Nullable<DataTypes> | null;
+    hashes: DataHashes | null;
+    callbackID?: string;
+}
+
+export interface ServerRequestGetUserData {
+    status: 'get-user-data';
+    result: 'ok' | 'error';
+    data: Account | null;
+    callbackID?: string;
+}
+
+export interface ServerRequestSetUserData {
+    status: 'set-user-data';
+    result: 'ok' | 'error';
+    callbackID?: string;
+}
+
+export interface ServerRequestGetInventories {
+    status: 'get-inventories';
+    result:
+        | 'error'
+        | 'already-up-to-date'
+        | {
+              titleIDs: number[],
+              stuffs: Stuff[],
+              avatar: AvatarObject,
+              token: number
+          };
+    callbackID?: string;
+}
+
+//
+// Ads
+//
+
+export interface ServerRequestGetAds {
+    status: 'get-ads';
+    result: 'ok' | 'error';
+    ads: Ad[];
+    callbackID?: string;
+}
+
+export interface ServerRequestWatchAd {
+    status: 'watch-ad';
+    result: 'ok' | 'error';
+    ox?: number;
+    callbackID?: string;
+}
+
+//
+// Activities
+//
+
+export interface ServerRequestCreateSkill {
+    status: 'create-skill';
+    result:
+        | 'error'
+        | 'skill-already-exists'
+        | 'cant-generate'
+        | 'feature-disabled'
+        | {
+              generatedSkill: GeneratedSkill,
+              encryptedSkill: string
+          };
+    callbackID?: string;
+}
+
+export interface ServerRequestAddSkill {
+    status: 'add-skill';
+    result: 'ok' | 'skill-already-exists' | 'invalid-skill' | 'error';
+    callbackID?: string;
+}
+
+export interface ServerRequestGetActivities {
+    status: 'get-activities';
+    result:
+        | 'error'
+        | 'already-up-to-date'
+        | {
+              activities: ActivitySaved[],
+              token: number
+          };
+    callbackID?: string;
+}
+
+export interface ClientRequestSaveActivities {
+    status: 'save-activities';
+    result:
+        | 'wrong-activities'
+        | 'not-up-to-date'
+        | 'error'
+        | {
+              newActivities: ActivitySaved[],
+              token: number
+          };
+    callbackID?: string;
+}
+
+//
+// Achievements
+//
+
+export interface ServerRequestGetAchievements {
+    status: 'get-achievements';
+    result:
+        | 'error'
+        | 'already-up-to-date'
+        | {
+              achievements: AchievementItem[],
+              token: number
+          };
+    callbackID?: string;
+}
+
+export interface ServerRequestAddAchievement {
+    status: 'save-achievements';
+    result:
+        | 'error'
+        | 'wrong-achievements'
+        | 'not-up-to-date'
+        | {
+              newAchievements: AchievementItem[],
+              token: number
+          };
+    callbackID?: string;
+}
+
+export interface ServerRequestClaimAchievement {
+    status: 'claim-achievement';
+    result:
+        | 'error'
+        | 'not-up-to-date'
+        | {
+              rewards: Reward[],
+              newOx: number,
+              token: number
+          };
+    callbackID?: string;
+}
+
+//
+// Quests
+//
+
+export interface ServerRequestGetQuests {
+    status: 'get-quests';
+    result:
+        | 'error'
+        | 'already-up-to-date'
+        | {
+              quests: QuestSaved[],
+              sort: number[],
+              token: number
+          };
+    callbackID?: string;
+}
+
+export interface ServerRequestSaveQuests {
+    status: 'save-quests';
+    result:
+        | 'wrong-quests'
+        | 'not-up-to-date'
+        | 'error'
+        | {
+              newQuests: QuestSaved[],
+              token: number
+          };
+    callbackID?: string;
+}
+
+//
+// Daily Quests
+//
+
+export interface ServerRequestGetDailyQuestToday {
+    status: 'get-daily-quest-today';
+    result: 'error' | { categoryID: number };
+    callbackID?: string;
+}
+
+export interface ServerRequestGetDailyQuests {
+    status: 'get-daily-quests';
+    result:
+        | 'error'
+        | 'already-up-to-date'
+        | {
+              claimData: DailyQuestData[],
+              token: number
+          };
+    callbackID?: string;
+}
+
+export interface ServerRequestSaveDailyQuests {
+    status: 'save-daily-quests';
+    result:
+        | 'error'
+        | 'wrong-daily-quests'
+        | 'not-up-to-date'
+        | {
+              newDailyQuests: DailyQuestData[],
+              token: number
+          };
+    callbackID?: string;
+}
+
+export interface ServerRequestClaimDailyQuest {
+    status: 'claim-daily-quest';
+    result:
+        | 'error'
+        | 'wrong-daily-quests'
+        | 'not-up-to-date'
+        | {
+              dayIndexes: number[],
+              rewards: Reward[],
+              newOx: number,
+              token: number
+          };
+    callbackID?: string;
+}
+
+//
+// Missions
+//
+
+export interface ServerRequestGetMissions {
+    status: 'get-missions';
+    result:
+        | 'error'
+        | 'already-up-to-date'
+        | {
+              missions: MissionItem[],
+              token: number
+          };
+    callbackID?: string;
+}
+
+export interface ServerRequestSaveMissions {
+    status: 'save-missions';
+    result:
+        | 'wrong-missions'
+        | 'not-up-to-date'
+        | 'error'
+        | {
+              token: number
+          };
+    callbackID?: string;
+}
+
+export interface ServerRequestClaimMission {
+    status: 'claim-mission';
+    result:
+        | 'error'
+        | 'already-claimed'
+        | 'not-up-to-date'
+        | {
+              rewards: Reward[],
+              newOx: number,
+              newToken: number
+          };
+    callbackID?: string;
+}
+
+//
+// Todo
+//
+
+export interface ServerRequestGetTodo {
+    status: 'get-todo';
+    result:
+        | 'error'
+        | 'already-up-to-date'
+        | {
+              todo: TodoSaved[],
+              sort: number[],
+              token: number
+          };
+    callbackID?: string;
+}
+
+export interface ServerRequestSaveTodo {
+    status: 'save-todo';
+    result:
+        | 'error'
+        | 'not-up-to-date'
+        | 'wrong-todo'
+        | {
+              newTodos: TodoSaved[],
+              token: number
+          };
+    callbackID?: string;
+}
+
+//
+// Notifications
+//
+
+export interface ServerRequestUpdateNotifications {
+    status: 'update-notifications';
+    notifications: NotificationInApp<keyof NotificationInAppDataType>[];
+    callbackID?: string;
+}
+
+//
+// Metrics
+//
+
+export interface ServerRequestSendError {
+    status: 'send-error';
+    result: 'ok' | 'error';
+    callbackID?: string;
+}
+
+export interface ServerRequestSendReport {
+    status: 'send-report';
+    result: 'ok' | 'error';
+    callbackID?: string;
+}
+
+export interface ServerRequestSendStatistics {
+    status: 'send-statistics';
+    result: 'ok' | 'error';
+    callbackID?: string;
+}
+
+//
+// Global notifications
+//
+
+export interface ServerRequestReadGlobalNotification {
+    status: 'read-global-notification';
+    result: 'ok' | 'not-found' | 'error';
+    callbackID?: string;
+}
+
+export interface ServerRequestRespondGlobalNotification {
+    status: 'respond-global-notification';
+    result: 'ok' | 'not-found' | 'error';
+    callbackID?: string;
+}
+
+export interface ServerRequestClaimGlobalNotification {
+    status: 'claim-global-notification';
+    result:
+        | 'error'
+        | 'not-found'
+        | {
+              rewards: Reward[]
+          };
+    callbackID?: string;
+}
+
+//
+// Multiplayer
+//
+
+export interface ServerRequestUpdateFriends {
+    status: 'update-friends';
+    result:
+        | 'error'
+        | {
+              friends: (UserOnline | Friend)[],
+              friendIDsToUpdate: number[]
+          };
+    callbackID?: string;
+}
+
+export interface ServerRequestAddFriend {
+    status: 'add-friend';
+    result: 'ok' | 'self' | 'already-friend' | 'already-pending' | 'blocked' | 'not-found' | 'error';
+    callbackID?: string;
+}
+
+export interface ServerRequestAcceptFriend {
+    status: 'accept-friend';
+    result: 'ok' | 'not-pending' | 'error';
+    callbackID?: string;
+}
+
+export interface ServerRequestDeclineFriend {
+    status: 'decline-friend';
+    result: 'ok' | 'not-pending' | 'error';
+    callbackID?: string;
+}
+
+export interface ServerRequestCancelFriend {
+    status: 'cancel-friend';
+    result: 'ok' | 'not-pending' | 'error';
+    callbackID?: string;
+}
+
+export interface ServerRequestRemoveFriend {
+    status: 'remove-friend';
+    result: 'ok' | 'not-friend' | 'error';
+    callbackID?: string;
+}
+
+export interface ServerRequestBlockFriend {
+    status: 'block-friend';
+    result: 'ok' | 'not-friend' | 'error';
+    callbackID?: string;
+}
+
+export interface ServerRequestUnblockFriend {
+    status: 'unblock-friend';
+    result: 'ok' | 'not-friend' | 'error';
+    callbackID?: string;
+}
+
+export type TCPServerRequest =
+    | ServerRequestCheckDate
+    | ServerRequestConnect
+    | ServerRequestDisconnect
+    | ServerRequestSignin
+    | ServerRequestLogin
+    | ServerRequestSetLang
+    | ServerRequestSetUsername
+    | ServerRequestGetDevices
+    | ServerRequestDeleteAccount
+    | ServerRequestWaitMail
+    | ServerRequestGetAppData
+    | ServerRequestGetUserData
+    | ServerRequestSetUserData
+    | ServerRequestGetInventories
+    | ServerRequestGetAds
+    | ServerRequestWatchAd
+    | ServerRequestCreateSkill
+    | ServerRequestAddSkill
+    | ServerRequestGetActivities
+    | ClientRequestSaveActivities
+    | ServerRequestGetAchievements
+    | ServerRequestAddAchievement
+    | ServerRequestClaimAchievement
+    | ServerRequestGetQuests
+    | ServerRequestSaveQuests
+    | ServerRequestGetDailyQuestToday
+    | ServerRequestGetDailyQuests
+    | ServerRequestSaveDailyQuests
+    | ServerRequestClaimDailyQuest
+    | ServerRequestGetMissions
+    | ServerRequestSaveMissions
+    | ServerRequestClaimMission
+    | ServerRequestGetTodo
+    | ServerRequestSaveTodo
+    | ServerRequestUpdateNotifications
+    | ServerRequestSendError
+    | ServerRequestSendReport
+    | ServerRequestSendStatistics
+    | ServerRequestReadGlobalNotification
+    | ServerRequestRespondGlobalNotification
+    | ServerRequestClaimGlobalNotification
+    | ServerRequestUpdateFriends
+    | ServerRequestAddFriend
+    | ServerRequestAcceptFriend
+    | ServerRequestDeclineFriend
+    | ServerRequestCancelFriend
+    | ServerRequestRemoveFriend
+    | ServerRequestBlockFriend
+    | ServerRequestUnblockFriend;
