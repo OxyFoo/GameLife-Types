@@ -1,7 +1,7 @@
 import { LangKeys } from '@/Global/Langs';
 import { StatsXP } from '@/Class/Experience';
 import { AdNames } from '@/Data/App/Ads';
-import { DataHashes } from '@/Data/App/index';
+import { DataHashes } from '@/Data/App';
 import { Quest, QuestSaved } from '@/Data/User/Quests';
 import { Todo, TodoSaved } from '@/Data/User/Todos';
 import { Activity, ActivitySaved } from '@/Data/User/Activities';

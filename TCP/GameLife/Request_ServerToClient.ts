@@ -3,7 +3,7 @@ import { Reward } from '@/Class/Rewards';
 import { ActivitySaved } from '@/Data/User/Activities';
 import { TodoSaved } from '@/Data/User/Todos';
 import { AchievementItem } from '@/Data/User/Achievements';
-import { DataHashes, DataTypes } from '@/Data/App/index';
+import { DataHashes, DataTypes } from '@/Data/App';
 import { Account } from '@/Data/Server/Account';
 import { AvatarObject, Stuff } from '@/Data/User/Inventory';
 import { Ad } from '@/Data/App/Ads';
