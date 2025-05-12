@@ -8,6 +8,6 @@ export interface MissionItem {
 }
 
 export type SaveObject_Missions = {
-    missions: MissionItem[],
-    token: number
+    missions: MissionItem[];
+    token: number;
 };

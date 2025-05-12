@@ -6,7 +6,7 @@ export interface AchievementItem {
 }
 
 export type SaveObject_Achievements = {
-    solved: AchievementItem[],
-    unsaved: AchievementItem[],
-    token: number
+    solved: AchievementItem[];
+    unsaved: AchievementItem[];
+    token: number;
 };

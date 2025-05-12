@@ -28,11 +28,11 @@ export interface Task {
 }
 
 export type SaveObject_Todos = {
-    todos: TodoSaved[],
-    additions: Todo[],
-    editions: TodoSaved[],
-    deletions: number[],
-    sort: number[],
-    sortSaved: boolean,
-    token: number
+    todos: TodoSaved[];
+    additions: Todo[];
+    editions: TodoSaved[];
+    deletions: number[];
+    sort: number[];
+    sortSaved: boolean;
+    token: number;
 };

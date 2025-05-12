@@ -23,8 +23,8 @@ export interface AvatarObject {
 }
 
 export type SaveObject_Inventory = {
-    titleIDs: number[],
-    stuffs: Stuff[],
-    avatar: AvatarObject,
-    token: number
+    titleIDs: number[];
+    stuffs: Stuff[];
+    avatar: AvatarObject;
+    token: number;
 };

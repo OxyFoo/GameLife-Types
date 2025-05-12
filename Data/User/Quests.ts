@@ -38,11 +38,11 @@ export interface QuestSaved extends Quest {
 }
 
 export type SaveObject_Quests = {
-    quests: QuestSaved[],
-    unsavedAdditions: Quest[],
-    unsavedEditions: QuestSaved[],
-    unsavedDeletions: number[],
-    sort: number[],
-    sortIsSaved: boolean,
-    token: number
+    quests: QuestSaved[];
+    unsavedAdditions: Quest[];
+    unsavedEditions: QuestSaved[];
+    unsavedDeletions: number[];
+    sort: number[];
+    sortIsSaved: boolean;
+    token: number;
 };

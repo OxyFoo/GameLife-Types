@@ -25,5 +25,5 @@ export interface DataTypes {
 }
 
 export type DataHashes = {
-    [K in keyof DataTypes]: number
+    [K in keyof DataTypes]: number;
 };

@@ -71,10 +71,10 @@ export interface ServerRequestLogin {
         | 'waitMailConfirmation'
         | 'error'
         | {
-              devMode: boolean,
-              banned: boolean,
+              devMode: boolean;
+              banned: boolean;
               /** Used for mail confirmation when the user is not connected */
-              token?: string
+              token?: string;
           };
     callbackID?: string;
 }
@@ -105,11 +105,11 @@ export interface ServerRequestGetDevices {
     status: 'get-devices';
     result: 'ok' | 'error';
     devices?: {
-        deviceName: string,
-        OSName: string,
-        OSVersion: string,
-        created: Date,
-        banned: boolean
+        deviceName: string;
+        OSName: string;
+        OSVersion: string;
+        created: Date;
+        banned: boolean;
     }[];
     callbackID?: string;
 }
@@ -151,10 +151,10 @@ export interface ServerRequestGetInventories {
         | 'error'
         | 'already-up-to-date'
         | {
-              titleIDs: number[],
-              stuffs: Stuff[],
-              avatar: AvatarObject,
-              token: number
+              titleIDs: number[];
+              stuffs: Stuff[];
+              avatar: AvatarObject;
+              token: number;
           };
     callbackID?: string;
 }
@@ -189,8 +189,8 @@ export interface ServerRequestCreateSkill {
         | 'cant-generate'
         | 'feature-disabled'
         | {
-              generatedSkill: GeneratedSkill,
-              encryptedSkill: string
+              generatedSkill: GeneratedSkill;
+              encryptedSkill: string;
           };
     callbackID?: string;
 }
@@ -207,8 +207,8 @@ export interface ServerRequestGetActivities {
         | 'error'
         | 'already-up-to-date'
         | {
-              activities: ActivitySaved[],
-              token: number
+              activities: ActivitySaved[];
+              token: number;
           };
     callbackID?: string;
 }
@@ -220,8 +220,8 @@ export interface ClientRequestSaveActivities {
         | 'not-up-to-date'
         | 'error'
         | {
-              newActivities: ActivitySaved[],
-              token: number
+              newActivities: ActivitySaved[];
+              token: number;
           };
     callbackID?: string;
 }
@@ -236,8 +236,8 @@ export interface ServerRequestGetAchievements {
         | 'error'
         | 'already-up-to-date'
         | {
-              achievements: AchievementItem[],
-              token: number
+              achievements: AchievementItem[];
+              token: number;
           };
     callbackID?: string;
 }
@@ -249,8 +249,8 @@ export interface ServerRequestAddAchievement {
         | 'wrong-achievements'
         | 'not-up-to-date'
         | {
-              newAchievements: AchievementItem[],
-              token: number
+              newAchievements: AchievementItem[];
+              token: number;
           };
     callbackID?: string;
 }
@@ -261,9 +261,9 @@ export interface ServerRequestClaimAchievement {
         | 'error'
         | 'not-up-to-date'
         | {
-              rewards: Reward[],
-              newOx: number,
-              token: number
+              rewards: Reward[];
+              newOx: number;
+              token: number;
           };
     callbackID?: string;
 }
@@ -278,9 +278,9 @@ export interface ServerRequestGetQuests {
         | 'error'
         | 'already-up-to-date'
         | {
-              quests: QuestSaved[],
-              sort: number[],
-              token: number
+              quests: QuestSaved[];
+              sort: number[];
+              token: number;
           };
     callbackID?: string;
 }
@@ -292,8 +292,8 @@ export interface ServerRequestSaveQuests {
         | 'not-up-to-date'
         | 'error'
         | {
-              newQuests: QuestSaved[],
-              token: number
+              newQuests: QuestSaved[];
+              token: number;
           };
     callbackID?: string;
 }
@@ -314,8 +314,8 @@ export interface ServerRequestGetDailyQuests {
         | 'error'
         | 'already-up-to-date'
         | {
-              claimData: DailyQuestData[],
-              token: number
+              claimData: DailyQuestData[];
+              token: number;
           };
     callbackID?: string;
 }
@@ -327,8 +327,8 @@ export interface ServerRequestSaveDailyQuests {
         | 'wrong-daily-quests'
         | 'not-up-to-date'
         | {
-              newDailyQuests: DailyQuestData[],
-              token: number
+              newDailyQuests: DailyQuestData[];
+              token: number;
           };
     callbackID?: string;
 }
@@ -340,10 +340,10 @@ export interface ServerRequestClaimDailyQuest {
         | 'wrong-daily-quests'
         | 'not-up-to-date'
         | {
-              dayIndexes: number[],
-              rewards: Reward[],
-              newOx: number,
-              token: number
+              dayIndexes: number[];
+              rewards: Reward[];
+              newOx: number;
+              token: number;
           };
     callbackID?: string;
 }
@@ -358,8 +358,8 @@ export interface ServerRequestGetMissions {
         | 'error'
         | 'already-up-to-date'
         | {
-              missions: MissionItem[],
-              token: number
+              missions: MissionItem[];
+              token: number;
           };
     callbackID?: string;
 }
@@ -371,7 +371,7 @@ export interface ServerRequestSaveMissions {
         | 'not-up-to-date'
         | 'error'
         | {
-              token: number
+              token: number;
           };
     callbackID?: string;
 }
@@ -383,9 +383,9 @@ export interface ServerRequestClaimMission {
         | 'already-claimed'
         | 'not-up-to-date'
         | {
-              rewards: Reward[],
-              newOx: number,
-              newToken: number
+              rewards: Reward[];
+              newOx: number;
+              newToken: number;
           };
     callbackID?: string;
 }
@@ -400,9 +400,9 @@ export interface ServerRequestGetTodo {
         | 'error'
         | 'already-up-to-date'
         | {
-              todo: TodoSaved[],
-              sort: number[],
-              token: number
+              todo: TodoSaved[];
+              sort: number[];
+              token: number;
           };
     callbackID?: string;
 }
@@ -414,8 +414,8 @@ export interface ServerRequestSaveTodo {
         | 'not-up-to-date'
         | 'wrong-todo'
         | {
-              newTodos: TodoSaved[],
-              token: number
+              newTodos: TodoSaved[];
+              token: number;
           };
     callbackID?: string;
 }
@@ -474,7 +474,7 @@ export interface ServerRequestClaimGlobalNotification {
         | 'error'
         | 'not-found'
         | {
-              rewards: Reward[]
+              rewards: Reward[];
           };
     callbackID?: string;
 }
@@ -488,8 +488,8 @@ export interface ServerRequestUpdateFriends {
     result:
         | 'error'
         | {
-              friends: (UserOnline | Friend)[],
-              friendIDsToUpdate: number[]
+              friends: (UserOnline | Friend)[];
+              friendIDsToUpdate: number[];
           };
     callbackID?: string;
 }

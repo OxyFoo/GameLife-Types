@@ -67,11 +67,11 @@ export class Friend {
 
     activities: {
         /** Number of activities */
-        length: number,
+        length: number;
         /** Total duration of activities in minutes */
-        totalDuration: number,
+        totalDuration: number;
         /** Timestamp of the first activity (in seconds, UTC) */
-        firstTime: number
+        firstTime: number;
     } = {
         length: 0,
         totalDuration: 0,
@@ -90,5 +90,5 @@ export class Friend {
 }
 
 export type SaveObject_Multiplayer = {
-    friends: (Friend | UserOnline)[]
+    friends: (Friend | UserOnline)[];
 };

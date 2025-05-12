@@ -1,19 +1,22 @@
 import globals from 'globals';
 import pluginJs from '@eslint/js';
 import tseslint from 'typescript-eslint';
-import pluginReact from 'eslint-plugin-react';
 import prettier from 'eslint-plugin-prettier';
 
 export default [
     { files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'] },
-    { languageOptions: { globals: globals.browser } },
+    { ignores: ['**/dist/**', '**/node_modules/**'] },
 
-    // Configuration ESLint
     pluginJs.configs.recommended,
     ...tseslint.configs.recommended,
-    pluginReact.configs.flat.recommended,
 
     {
+        languageOptions: {
+            globals: {
+                ...globals.browser,
+                ...globals.node
+            }
+        },
         plugins: {
             prettier: prettier
         },
@@ -47,7 +50,7 @@ export default [
                 'warn',
                 {
                     singleQuote: true,
-                    parser: 'flow',
+                    parser: 'typescript',
                     tabWidth: 4,
                     jsxSingleQuote: true,
                     avoidEscape: true,

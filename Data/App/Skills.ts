@@ -6,12 +6,12 @@ export interface Skill {
     Name: LangType;
     CategoryID: number;
     Stats: {
-        int: number,
-        soc: number,
-        for: number,
-        sta: number,
-        agi: number,
-        dex: number
+        int: number;
+        soc: number;
+        for: number;
+        sta: number;
+        agi: number;
+        dex: number;
     };
     LogoID: number;
     Creator: string;

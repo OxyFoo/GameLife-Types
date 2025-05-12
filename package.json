@@ -1,0 +1,33 @@
+{
+  "name": "gamelife-types",
+  "version": "2.0.2",
+  "description": "GameLife Types - TypeScript types for the GameLife project.",
+  "main": "index.ts",
+  "scripts": {
+    "lint": "eslint .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OxyFoo/GameLife-Types.git"
+  },
+  "author": "OxyFoo",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/OxyFoo/GameLife-Types/issues"
+  },
+  "homepage": "https://github.com/OxyFoo/GameLife-Types#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.32.0",
+    "@typescript-eslint/parser": "^8.32.0",
+    "eslint": "^9.26.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-prettier": "^5.4.0",
+    "globals": "^16.1.0",
+    "prettier": "^3.5.3",
+    "typescript-eslint": "^8.32.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

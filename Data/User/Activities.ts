@@ -48,10 +48,10 @@ export interface CurrentActivity {
 }
 
 export type SaveObject_Activities = {
-    activities: ActivitySaved[],
-    editions: ActivitySaved[],
-    additions: Activity[],
-    deletions: number[],
-    current: CurrentActivity | null,
-    token: number
+    activities: ActivitySaved[];
+    editions: ActivitySaved[];
+    additions: Activity[];
+    deletions: number[];
+    current: CurrentActivity | null;
+    token: number;
 };

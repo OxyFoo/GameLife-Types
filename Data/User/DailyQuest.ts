@@ -10,7 +10,7 @@ export interface DailyQuestToday {
 }
 
 export type SaveObject_DailyQuest = {
-    SAVED_data: DailyQuestData[],
-    UNSAVED_data: DailyQuestData[],
-    token: number
+    SAVED_data: DailyQuestData[];
+    UNSAVED_data: DailyQuestData[];
+    token: number;
 };

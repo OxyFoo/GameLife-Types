@@ -33,10 +33,10 @@ interface NIA_OptionalUpdate {
 }
 
 export type NotificationInAppDataType = {
-    'friend-pending': NIA_FriendPending,
-    'achievement-pending': NIA_AchievementPending,
-    'global-message': NIA_GlobalMessage,
-    'optional-update': NIA_OptionalUpdate
+    'friend-pending': NIA_FriendPending;
+    'achievement-pending': NIA_AchievementPending;
+    'global-message': NIA_GlobalMessage;
+    'optional-update': NIA_OptionalUpdate;
 };
 
 export class NotificationInApp<T extends keyof NotificationInAppDataType> {

@@ -43,8 +43,8 @@ export interface Achievement {
 
 export interface Condition {
     Comparator: {
-        Type: Comparator,
-        Value: number | null
+        Type: Comparator;
+        Value: number | null;
     };
     Operator: Operator;
     Value: string | number | null;
