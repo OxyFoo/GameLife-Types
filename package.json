@@ -1,11 +1,11 @@
 {
-  "name": "gamelife-types",
+  "name": "@oxyfoo/gamelife-types",
   "version": "2.0.2",
   "description": "GameLife Types - TypeScript types for the GameLife project.",
   "main": "index.ts",
   "scripts": {
     "lint": "eslint .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tsc --noEmit && echo \"No tests specified but there is no error in the code\""
   },
   "repository": {
     "type": "git",
