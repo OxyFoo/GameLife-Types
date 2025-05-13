@@ -1,6 +1,6 @@
 {
   "name": "@oxyfoo/gamelife-types",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "GameLife Types - TypeScript types for the GameLife project.",
   "main": "index.ts",
   "scripts": {
