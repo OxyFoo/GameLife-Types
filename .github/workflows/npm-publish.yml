@@ -46,7 +46,7 @@ jobs:
         with:
           name: types
           path: |
-            *.d.ts
+            **/*.d.ts
             package.json
             README.md
             LICENSE
