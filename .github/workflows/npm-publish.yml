@@ -46,12 +46,13 @@ jobs:
         with:
           name: types
           path: |
+            **/*.js
             **/*.d.ts
             package.json
             README.md
             LICENSE
 
-  publish-npm:
+  publish-github-npm:
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -71,6 +72,16 @@ jobs:
       - run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  publish-npm:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: types
+          path: .
 
       - name: Publish to NPM
         uses: actions/setup-node@v4
