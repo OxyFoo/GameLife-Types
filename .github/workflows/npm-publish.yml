@@ -36,21 +36,11 @@ jobs:
       - run: npm ci
       - run: npm run build
 
-      - name: Move *.d.ts to project root
-        run: |
-          cp -r dist/* .
-          rm -rf dist
-
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
           name: types
-          path: |
-            **/*.js
-            **/*.d.ts
-            package.json
-            README.md
-            LICENSE
+          path: ./dist/*
 
   publish-github-npm:
     needs: build
