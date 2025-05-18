@@ -1,10 +1,11 @@
 {
   "name": "@oxyfoo/gamelife-types",
-  "version": "2.0.8",
+  "version": "2.0.9",
   "description": "GameLife Types - TypeScript types for the GameLife project.",
-  "main": "index.ts",
+  "main": "./index.js",
+  "types": "./index.d.ts",
   "scripts": {
-    "build": "tsc && tsc-alias && cp package.json README.md LICENSE ./dist/",
+    "build": "tsc && tsc-alias && cp package.json README.md LICENSE ./dist/ && rm -f ./dist/tsconfig.tsbuildinfo",
     "clean": "rm -rf dist node_modules",
     "lint": "eslint .",
     "test": "tsc --noEmit && echo \"No tests specified but there is no error in the code\""
@@ -19,6 +20,11 @@
     "url": "https://github.com/OxyFoo/GameLife-Types/issues"
   },
   "homepage": "https://github.com/OxyFoo/GameLife-Types#readme",
+  "type": "module",
+  "files": [
+    "**/*.js",
+    "**/*.d.ts"
+  ],
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^8.32.0",
     "@typescript-eslint/parser": "^8.32.0",
@@ -36,10 +42,12 @@
   "exports": {
     ".": {
       "import": "./index.js",
+      "require": "./index.js",
       "types": "./index.d.ts"
     },
     "./*": {
       "import": "./*.js",
+      "require": "./*.js",
       "types": "./*.d.ts"
     }
   }

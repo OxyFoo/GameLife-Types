@@ -10,7 +10,7 @@ type Sexes = 'MALE' | 'FEMALE';
 type CharactersName = 'skin_01';
 type StuffID = 'hair_01' | 'top_01' | 'bottom_01' | 'shoes_01';
 
-export type ConnectionState = 'online' | 'offline';
+export type FriendConnectionState = 'online' | 'offline';
 export type FriendshipState = 'pending' | 'blocked' | 'none';
 export type FriendshipStateAccepted = 'accepted';
 
@@ -30,7 +30,7 @@ interface UserAvatar {
 export class UserOnline {
     friendshipState: FriendshipState = 'none';
 
-    status: ConnectionState = 'offline';
+    status: FriendConnectionState = 'offline';
     accountID: number = 0;
     username: string = '';
     title: number = 0;
@@ -50,7 +50,7 @@ export class UserOnline {
 export class Friend {
     friendshipState: FriendshipStateAccepted = 'accepted';
 
-    status: ConnectionState = 'offline';
+    status: FriendConnectionState = 'offline';
     accountID: number = 0;
     username: string = '';
     title: number = 0;

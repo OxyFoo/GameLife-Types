@@ -2,9 +2,9 @@
   "exclude": ["node_modules", "dist"],
   "compilerOptions": {
     "composite": true,
-    "target": "ESNext",
+    "target": "es2024",
     "module": "ESNext",
-    "lib": ["dom", "es6", "es2017", "esnext.asynciterable"],
+    "lib": ["dom", "es2024", "esnext.asynciterable"],
     "sourceMap": false,
     "outDir": "./dist",
     "rootDir": ".",
@@ -23,5 +23,8 @@
     "noFallthroughCasesInSwitch": true,
     "removeComments": true,
     "pretty": true
+  },
+  "tsc-alias": {
+    "resolveFullPaths": true
   }
 }

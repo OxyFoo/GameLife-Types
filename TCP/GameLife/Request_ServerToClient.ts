@@ -213,7 +213,7 @@ export interface ServerRequestGetActivities {
     callbackID?: string;
 }
 
-export interface ClientRequestSaveActivities {
+export interface ServerRequestSaveActivities {
     status: 'save-activities';
     result:
         | 'wrong-activities'
@@ -556,7 +556,7 @@ export type TCPServerRequest =
     | ServerRequestCreateSkill
     | ServerRequestAddSkill
     | ServerRequestGetActivities
-    | ClientRequestSaveActivities
+    | ServerRequestSaveActivities
     | ServerRequestGetAchievements
     | ServerRequestAddAchievement
     | ServerRequestClaimAchievement
