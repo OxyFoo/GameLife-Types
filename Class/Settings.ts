@@ -5,8 +5,6 @@ import { MusicLinksType } from '@/Global/Links';
 export type SaveObject_Settings = {
     lang: LangKeys;
     theme: ThemeKeys;
-    email: string;
-    token: string;
     onboardingWatched: boolean;
     testMessageReaded: boolean;
     tutoFinished: boolean;

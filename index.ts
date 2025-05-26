@@ -9,6 +9,7 @@ export * from './Class/Consent';
 export * from './Class/Experience';
 export * from './Class/NotificationsInApp';
 export * from './Class/Rewards';
+export * from './Class/Server';
 export * from './Class/Settings';
 export * from './Class/Shop';
 export * from './Class/ZapGPT';

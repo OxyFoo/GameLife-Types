@@ -1,5 +1,7 @@
 import { LangKeys } from '@/Global/Langs';
+import { DeepReadonly } from '@/Global/Utils';
 import { StatsXP } from '@/Class/Experience';
+import { IntegrityToken } from '@/Class/Server';
 import { AdNames } from '@/Data/App/Ads';
 import { DataHashes } from '@/Data/App';
 import { Quest, QuestSaved } from '@/Data/User/Quests';
@@ -11,8 +13,35 @@ import { ReportType } from '@/Data/App/Reports';
 import { DailyQuestData } from '@/Data/User/DailyQuest';
 
 //
-// App
+// Device Authentication
 //
+
+export interface ClientRequestHandshake {
+    action: 'handshake';
+    integrityToken: IntegrityToken | null;
+    appVersion: string;
+    callbackID?: string;
+}
+
+export interface ClientRequestCheckIntegrity {
+    action: 'check-integrity';
+    integrityToken: IntegrityToken | null;
+    callbackID?: string;
+}
+
+export interface ClientRequestAuthenticate {
+    action: 'authenticate';
+    credentials: {
+        UUID: string | null;
+        sessionToken: string | null;
+    };
+    informations: {
+        deviceName: string;
+        OSName: string;
+        OSVersion: string;
+    };
+    callbackID?: string;
+}
 
 export interface ClientRequestCheckDate {
     action: 'check-date';
@@ -21,18 +50,8 @@ export interface ClientRequestCheckDate {
 }
 
 //
-// Authentification
+// User Authentication
 //
-
-export interface ClientRequestConnect {
-    action: 'connect';
-    deviceName: string;
-    OSName: string;
-    OSVersion: string;
-    deviceIdentifier: string;
-    appVersion: string;
-    callbackID?: string;
-}
 
 export interface ClientRequestDisconnect {
     action: 'disconnect';
@@ -57,7 +76,6 @@ export interface ClientRequestWaitMail {
 export interface ClientRequestLogin {
     action: 'login';
     email: string;
-    token: string;
     callbackID?: string;
 }
 
@@ -381,9 +399,11 @@ export interface ClientRequestUnblockFriend {
     callbackID?: string;
 }
 
-type TCPClientRequest =
+type TCPClientRequest = DeepReadonly<
+    | ClientRequestHandshake
+    | ClientRequestCheckIntegrity
+    | ClientRequestAuthenticate
     | ClientRequestCheckDate
-    | ClientRequestConnect
     | ClientRequestDisconnect
     | ClientRequestSignin
     | ClientRequestWaitMail
@@ -429,6 +449,7 @@ type TCPClientRequest =
     | ClientRequestCancelFriend
     | ClientRequestRemoveFriend
     | ClientRequestBlockFriend
-    | ClientRequestUnblockFriend;
+    | ClientRequestUnblockFriend
+>;
 
 export { TCPClientRequest };

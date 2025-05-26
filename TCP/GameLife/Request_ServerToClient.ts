@@ -1,4 +1,4 @@
-import { Nullable } from '@/Global/Utils';
+import { DeepReadonly, Nullable } from '@/Global/Utils';
 import { Reward } from '@/Class/Rewards';
 import { ActivitySaved } from '@/Data/User/Activities';
 import { TodoSaved } from '@/Data/User/Todos';
@@ -15,8 +15,31 @@ import { Friend, UserOnline } from '@/Data/User/Multiplayer';
 import { NotificationInApp, NotificationInAppDataType } from '@/Class/NotificationsInApp';
 
 //
-// App
+// Device Authentication
 //
+
+export interface ServerRequestHandshake {
+    status: 'handshake';
+    result: 'ok' | 'maintenance' | 'update' | 'update-optional' | 'downdate' | 'error';
+    serverVersion?: string;
+    newIntegrityTokenNeeded?: boolean;
+    challenge?: string;
+    callbackID?: string;
+}
+
+export interface ServerRequestCheckIntegrity {
+    status: 'check-integrity';
+    result: 'ok' | 'error';
+    callbackID?: string;
+}
+
+export interface ServerRequestAuthenticate {
+    status: 'authenticate';
+    result: 'ok' | 'banned' | 'error';
+    newUuid?: string;
+    newSessionToken?: string;
+    callbackID?: string;
+}
 
 export interface ServerRequestCheckDate {
     status: 'check-date';
@@ -25,15 +48,8 @@ export interface ServerRequestCheckDate {
 }
 
 //
-// Authentification
+// User Authentication
 //
-
-export interface ServerRequestConnect {
-    status: 'connect';
-    result: 'ok' | 'maintenance' | 'update' | 'update-optional' | 'downdate' | 'error';
-    version?: string;
-    callbackID?: string;
-}
 
 export interface ServerRequestDisconnect {
     status: 'disconnect';
@@ -58,7 +74,6 @@ export interface ServerRequestWaitMail {
     status: 'wait-mail';
     result: 'sent' | 'wait' | 'confirmed' | 'error';
     remainingTime?: number;
-    token?: string;
     callbackID?: string;
 }
 
@@ -73,8 +88,6 @@ export interface ServerRequestLogin {
         | {
               devMode: boolean;
               banned: boolean;
-              /** Used for mail confirmation when the user is not connected */
-              token?: string;
           };
     callbackID?: string;
 }
@@ -536,9 +549,11 @@ export interface ServerRequestUnblockFriend {
     callbackID?: string;
 }
 
-export type TCPServerRequest =
+export type TCPServerRequest = DeepReadonly<
+    | ServerRequestHandshake
+    | ServerRequestCheckIntegrity
+    | ServerRequestAuthenticate
     | ServerRequestCheckDate
-    | ServerRequestConnect
     | ServerRequestDisconnect
     | ServerRequestSignin
     | ServerRequestLogin
@@ -585,4 +600,5 @@ export type TCPServerRequest =
     | ServerRequestCancelFriend
     | ServerRequestRemoveFriend
     | ServerRequestBlockFriend
-    | ServerRequestUnblockFriend;
+    | ServerRequestUnblockFriend
+>;
