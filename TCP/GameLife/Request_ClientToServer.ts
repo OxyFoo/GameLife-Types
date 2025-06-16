@@ -1,5 +1,4 @@
 import { LangKeys } from '@/Global/Langs';
-import { DeepReadonly } from '@/Global/Utils';
 import { StatsXP } from '@/Class/Experience';
 import { IntegrityToken } from '@/Class/Server';
 import { AdNames } from '@/Data/App/Ads';
@@ -18,7 +17,6 @@ import { DailyQuestData } from '@/Data/User/DailyQuest';
 
 export interface ClientRequestHandshake {
     action: 'handshake';
-    integrityToken: IntegrityToken | null;
     appVersion: string;
     callbackID?: string;
 }
@@ -70,6 +68,7 @@ export interface ClientRequestSignin {
 export interface ClientRequestWaitMail {
     action: 'wait-mail';
     email: string;
+    resend?: boolean;
     callbackID?: string;
 }
 
@@ -399,7 +398,7 @@ export interface ClientRequestUnblockFriend {
     callbackID?: string;
 }
 
-type TCPClientRequest = DeepReadonly<
+export type TCPClientRequest =
     | ClientRequestHandshake
     | ClientRequestCheckIntegrity
     | ClientRequestAuthenticate
@@ -449,7 +448,4 @@ type TCPClientRequest = DeepReadonly<
     | ClientRequestCancelFriend
     | ClientRequestRemoveFriend
     | ClientRequestBlockFriend
-    | ClientRequestUnblockFriend
->;
-
-export { TCPClientRequest };
+    | ClientRequestUnblockFriend;

@@ -5,7 +5,11 @@ export class IUserData<LocalData> {
         this.key = key;
     }
 
-    Clear = () => {};
+    /** @description Clear data & reset the class */
+    Clear: () => void | Promise<void> = () => {};
+
+    /** @description Unmount the class to free up resources */
+    Unmount: () => void | Promise<void> = () => {};
 
     Get: () => unknown = () => {};
 

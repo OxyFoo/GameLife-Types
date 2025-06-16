@@ -1,4 +1,4 @@
-import { DeepReadonly, Nullable } from '@/Global/Utils';
+import { Nullable } from '@/Global/Utils';
 import { Reward } from '@/Class/Rewards';
 import { ActivitySaved } from '@/Data/User/Activities';
 import { TodoSaved } from '@/Data/User/Todos';
@@ -22,14 +22,13 @@ export interface ServerRequestHandshake {
     status: 'handshake';
     result: 'ok' | 'maintenance' | 'update' | 'update-optional' | 'downdate' | 'error';
     serverVersion?: string;
-    newIntegrityTokenNeeded?: boolean;
-    challenge?: string;
     callbackID?: string;
 }
 
 export interface ServerRequestCheckIntegrity {
     status: 'check-integrity';
-    result: 'ok' | 'error';
+    result: 'ok' | 'new-integrity-token-needed' | 'error';
+    challenge?: string;
     callbackID?: string;
 }
 
@@ -72,7 +71,7 @@ export interface ServerRequestSignin {
 
 export interface ServerRequestWaitMail {
     status: 'wait-mail';
-    result: 'sent' | 'wait' | 'confirmed' | 'error';
+    result: 'sent' | 'wait' | 'confirmed' | 'can-resend' | 'error';
     remainingTime?: number;
     callbackID?: string;
 }
@@ -549,7 +548,7 @@ export interface ServerRequestUnblockFriend {
     callbackID?: string;
 }
 
-export type TCPServerRequest = DeepReadonly<
+export type TCPServerRequest =
     | ServerRequestHandshake
     | ServerRequestCheckIntegrity
     | ServerRequestAuthenticate
@@ -600,5 +599,4 @@ export type TCPServerRequest = DeepReadonly<
     | ServerRequestCancelFriend
     | ServerRequestRemoveFriend
     | ServerRequestBlockFriend
-    | ServerRequestUnblockFriend
->;
+    | ServerRequestUnblockFriend;

@@ -6,7 +6,11 @@ export class IUserClass<LocalData = object> {
         this.key = key;
     }
 
-    Clear = () => {};
+    /** @description Clear data & reset the class */
+    Clear: () => void | Promise<void> = () => {};
+
+    /** @description Unmount the class to free up resources */
+    Unmount: () => void | Promise<void> = () => {};
 
     /** @description Set the local data from the local storage */
     Load: (data: Partial<LocalData>) => void = () => {};

@@ -1,4 +1,4 @@
-export type ConnectionState = 'idle' | 'connected' | 'authenticated' | 'connecting' | 'disconnected' | 'error';
+export type ConnectionState = 'idle' | 'connecting' | 'connected' | 'disconnected' | 'wrong-ssl-pinning' | 'error';
 
 export type ServerStatus =
     | 'offline'

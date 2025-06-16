@@ -1,5 +1,9 @@
 export class IAppData<DataType> {
-    Clear: () => void = () => {};
+    /** @description Clear data & reset the class */
+    Clear: () => void | Promise<void> = () => {};
+
+    /** @description Unmount the class to free up resources */
+    Unmount: () => void | Promise<void> = () => {};
 
     Load: (data: DataType | undefined) => void = () => {};
 
