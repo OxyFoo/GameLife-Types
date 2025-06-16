@@ -7,6 +7,7 @@ export type SaveObject_Settings = {
     theme: ThemeKeys;
     onboardingWatched: boolean;
     testMessageReaded: boolean;
+    waitingEmail: string;
     tutoFinished: boolean;
     questHeatMapIndex: number;
     regularNotificationsLastRefresh: number;
