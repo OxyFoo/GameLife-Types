@@ -78,6 +78,18 @@ export interface ClientRequestLogin {
     callbackID?: string;
 }
 
+export interface ClientRequestGoogleSigninTokenSubmit {
+    action: 'google-signin-token-submit';
+    email: string;
+    token: string;
+    callbackID?: string;
+}
+
+export interface ClientRequestGoogleSigninTokenReset {
+    action: 'google-signin-token-reset';
+    callbackID?: string;
+}
+
 //
 // Account
 //
@@ -407,6 +419,8 @@ export type TCPClientRequest =
     | ClientRequestSignin
     | ClientRequestWaitMail
     | ClientRequestLogin
+    | ClientRequestGoogleSigninTokenSubmit
+    | ClientRequestGoogleSigninTokenReset
     | ClientRequestSetLang
     | ClientRequestSetUsername
     | ClientRequestGetDevices

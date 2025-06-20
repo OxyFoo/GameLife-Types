@@ -91,6 +91,18 @@ export interface ServerRequestLogin {
     callbackID?: string;
 }
 
+export interface ServerRequestGoogleSigninTokenSubmit {
+    status: 'google-signin-token-submit';
+    result: 'valid' | 'invalid' | 'error';
+    callbackID?: string;
+}
+
+export interface ServerRequestGoogleSigninTokenReset {
+    status: 'google-signin-token-reset';
+    result: 'ok' | 'error';
+    callbackID?: string;
+}
+
 //
 // Account
 //
@@ -556,6 +568,8 @@ export type TCPServerRequest =
     | ServerRequestDisconnect
     | ServerRequestSignin
     | ServerRequestLogin
+    | ServerRequestGoogleSigninTokenSubmit
+    | ServerRequestGoogleSigninTokenReset
     | ServerRequestSetLang
     | ServerRequestSetUsername
     | ServerRequestGetDevices
