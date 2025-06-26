@@ -93,7 +93,7 @@ export interface ServerRequestLogin {
 
 export interface ServerRequestGoogleSigninTokenSubmit {
     status: 'google-signin-token-submit';
-    result: 'valid' | 'invalid' | 'error';
+    result: 'can-signin' | 'can-login' | 'invalid' | 'error';
     callbackID?: string;
 }
 

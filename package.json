@@ -1,14 +1,14 @@
 {
   "name": "@oxyfoo/gamelife-types",
-  "version": "2.0.10",
+  "version": "2.0.11",
   "description": "GameLife Types - TypeScript types for the GameLife project.",
   "main": "./index.js",
   "types": "./index.d.ts",
   "scripts": {
     "build": "tsc && tsc-alias && cp package.json README.md LICENSE ./dist/ && rm -f ./dist/tsconfig.tsbuildinfo",
-    "clean": "rm -rf dist node_modules",
     "lint": "eslint .",
-    "test": "tsc --noEmit && echo \"No tests specified but there is no error in the code\""
+    "test": "tsc --noEmit && echo \"No tests specified but there is no error in the code\"",
+    "clean": "rm -rf dist node_modules"
   },
   "repository": {
     "type": "git",
