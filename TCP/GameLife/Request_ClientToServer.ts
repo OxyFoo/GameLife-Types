@@ -75,6 +75,7 @@ export interface ClientRequestWaitMail {
 export interface ClientRequestLogin {
     action: 'login';
     email: string;
+    skipAuthentication?: boolean;
     callbackID?: string;
 }
 
