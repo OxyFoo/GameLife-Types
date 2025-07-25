@@ -13,6 +13,7 @@ export type SaveObject_Settings = {
     regularNotificationsLastRefresh: number;
     morningNotifications: boolean;
     eveningNotifications: boolean;
+    optionalUpdatesNotifications: boolean;
     musicLinks: MusicLinksType;
     themeVariant: number;
 };
