@@ -8,7 +8,7 @@
     "build": "tsc && tsc-alias && cp package.json README.md LICENSE ./dist/ && rm -f ./dist/tsconfig.tsbuildinfo",
     "lint": "eslint .",
     "test": "tsc --noEmit && echo \"No tests specified but there is no error in the code\"",
-    "clean": "rm -rf dist node_modules"
+    "clean": "rm -rf dist node_modules package-lock.json"
   },
   "repository": {
     "type": "git",
