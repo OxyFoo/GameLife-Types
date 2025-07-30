@@ -35,7 +35,7 @@ export interface ServerRequestCheckIntegrity {
 export interface ServerRequestAuthenticate {
     status: 'authenticate';
     result: 'ok' | 'banned' | 'error';
-    devMode: boolean;
+    devMode?: boolean;
     newUuid?: string;
     newSessionToken?: string;
     callbackID?: string;
