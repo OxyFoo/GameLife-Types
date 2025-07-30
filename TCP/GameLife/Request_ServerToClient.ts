@@ -35,6 +35,7 @@ export interface ServerRequestCheckIntegrity {
 export interface ServerRequestAuthenticate {
     status: 'authenticate';
     result: 'ok' | 'banned' | 'error';
+    devMode: boolean;
     newUuid?: string;
     newSessionToken?: string;
     callbackID?: string;
@@ -85,7 +86,6 @@ export interface ServerRequestLogin {
         | 'waitMailConfirmation'
         | 'error'
         | {
-              devMode: boolean;
               banned: boolean;
           };
     callbackID?: string;

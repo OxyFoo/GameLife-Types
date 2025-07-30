@@ -332,7 +332,14 @@ export interface ClientRequestSendReport {
 
 export interface ClientRequestSendStatistics {
     action: 'send-statistics';
-    stats: { LoadingTimeMs: number };
+    stats: {
+        LoadingTimeMs?: number;
+        PagesVisit?: Array<{
+            name: string;
+            count: number;
+        }>;
+        LinkClick?: string;
+    };
     anonymous?: boolean;
     callbackID?: string;
 }
