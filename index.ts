@@ -12,6 +12,7 @@ export * from './Class/Rewards';
 export * from './Class/Server';
 export * from './Class/Settings';
 export * from './Class/Shop';
+export * from './Class/Statistics';
 export * from './Class/ZapGPT';
 
 // Exports from the Data file and its subfolders
