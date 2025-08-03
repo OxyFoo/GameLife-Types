@@ -14,6 +14,7 @@ export type SaveObject_Settings = {
     morningNotifications: boolean;
     eveningNotifications: boolean;
     optionalUpdatesNotifications: boolean;
+    statisticsEnabled: boolean;
     musicLinks: MusicLinksType;
     themeVariant: number;
 };
