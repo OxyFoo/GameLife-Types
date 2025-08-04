@@ -8,4 +8,5 @@ export interface Account {
     Ox: number;
     Birthtime: number | null;
     LastChangeBirth: number | null;
+    AccountAge: number;
 }

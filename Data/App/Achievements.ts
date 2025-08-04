@@ -14,7 +14,8 @@ export type Comparator =
     | 'ItemCount'
     | 'Ad'
     | 'Title'
-    | 'SelfFriend';
+    | 'SelfFriend'
+    | 'AccountAge';
 
 export type Operator = 'None' | 'LT' | 'GT';
 
