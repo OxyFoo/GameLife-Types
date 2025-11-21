@@ -1,27 +1,19 @@
-//import { Sexes, CharactersName } from 'Class/Inventory;
-//import { AchievementItem } from 'Class/Achievements;
-//import { StuffID } from 'Ressources/items/stuffs/Stuffs;
-
 import { StatsXP } from '@/Class/Experience';
 import { CurrentActivity } from '@/Data/User/Activities';
 import { AchievementItem } from '@/Data/User/Achievements';
-
-type Sexes = 'MALE' | 'FEMALE';
-type CharactersName = 'skin_01';
-type StuffID = 'hair_01' | 'top_01' | 'bottom_01' | 'shoes_01';
+import { CharactersID, ItemID } from '@/Data/App/Items';
 
 export type FriendConnectionState = 'online' | 'offline';
 export type FriendshipState = 'pending' | 'blocked' | 'none';
 export type FriendshipStateAccepted = 'accepted';
 
 interface UserAvatar {
-    Sexe: Sexes;
-    Skin: CharactersName;
+    Skin: CharactersID;
     SkinColor: number;
-    Hair: StuffID;
-    Top: StuffID;
-    Bottom: StuffID;
-    Shoes: StuffID;
+    Hair: ItemID;
+    Top: ItemID;
+    Bottom: ItemID;
+    Shoes: ItemID;
 }
 
 /**
@@ -36,13 +28,12 @@ export class UserOnline {
     title: number = 0;
     xp: number = 0;
     avatar: UserAvatar = {
-        Sexe: 'MALE',
-        Skin: 'skin_01',
+        Skin: 'human_00',
         SkinColor: 0,
-        Hair: 'hair_01',
-        Top: 'top_01',
-        Bottom: 'bottom_01',
-        Shoes: 'shoes_01'
+        Hair: 'hair_00',
+        Top: 'top_00',
+        Bottom: 'bottom_00',
+        Shoes: 'shoes_00'
     };
 }
 
@@ -56,13 +47,12 @@ export class Friend {
     title: number = 0;
     xp: number = 0;
     avatar: UserAvatar = {
-        Sexe: 'MALE',
-        Skin: 'skin_01',
+        Skin: 'human_00',
         SkinColor: 0,
-        Hair: 'hair_01',
-        Top: 'top_01',
-        Bottom: 'bottom_01',
-        Shoes: 'shoes_01'
+        Hair: 'hair_00',
+        Top: 'top_00',
+        Bottom: 'bottom_00',
+        Shoes: 'shoes_00'
     };
 
     activities: {

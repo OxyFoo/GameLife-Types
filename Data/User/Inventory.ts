@@ -1,4 +1,4 @@
-import { ItemID } from '@/Data/App/Items';
+import { ItemID, CharactersID } from '@/Data/App/Items';
 
 export interface Stuff {
     ID: number;
@@ -8,14 +8,8 @@ export interface Stuff {
 }
 
 export interface AvatarObject {
-    // TODO: Link property
-    sexe: 'MALE' | 'FEMALE';
-
-    // TODO: Link property
-    skin: 'skin_01';
-
+    skin: CharactersID;
     skinColor: number;
-
     hair: number;
     top: number;
     bottom: number;
