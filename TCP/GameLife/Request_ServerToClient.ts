@@ -183,6 +183,12 @@ export interface ServerRequestGetInventories {
     callbackID?: string;
 }
 
+export interface ServerRequestSaveInventories {
+    status: 'save-inventories';
+    result: 'error' | { token: number };
+    callbackID?: string;
+}
+
 //
 // Ads
 //
@@ -579,6 +585,7 @@ export type TCPServerRequest =
     | ServerRequestGetUserData
     | ServerRequestSetUserData
     | ServerRequestGetInventories
+    | ServerRequestSaveInventories
     | ServerRequestGetAds
     | ServerRequestWatchAd
     | ServerRequestCreateSkill

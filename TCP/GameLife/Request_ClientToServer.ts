@@ -10,6 +10,7 @@ import { MissionItem } from '@/Data/User/Missions';
 import { MissionKeys } from '@/Data/App/Missions';
 import { ReportType } from '@/Data/App/Reports';
 import { DailyQuestData } from '@/Data/User/DailyQuest';
+import { AvatarObject } from '@/Data/User/Inventory';
 
 //
 // Device Authentication
@@ -142,6 +143,13 @@ export interface ClientRequestSetUserData {
 
 export interface ClientRequestGetInventories {
     action: 'get-inventories';
+    token: number;
+    callbackID?: string;
+}
+
+export interface ClientRequestSaveInventories {
+    action: 'save-inventories';
+    avatar: AvatarObject;
     token: number;
     callbackID?: string;
 }
@@ -437,6 +445,7 @@ export type TCPClientRequest =
     | ClientRequestGetUserData
     | ClientRequestSetUserData
     | ClientRequestGetInventories
+    | ClientRequestSaveInventories
     | ClientRequestGetAds
     | ClientRequestWatchAd
     | ClientRequestCreateSkill
