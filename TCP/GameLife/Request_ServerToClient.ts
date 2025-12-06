@@ -153,6 +153,7 @@ export interface ServerRequestGetAppData {
     result: 'ok' | 'error';
     data: Nullable<DataTypes> | null;
     hashes: DataHashes | null;
+    iapSkus?: string[];
     callbackID?: string;
 }
 
@@ -566,6 +567,40 @@ export interface ServerRequestUnblockFriend {
     callbackID?: string;
 }
 
+//
+// Shop
+//
+
+export interface ShopChestStats {
+    priceOriginal: number;
+    priceDiscount: number;
+    probas: {
+        common: number;
+        rare: number;
+        epic: number;
+        legendary: number;
+    };
+}
+
+export interface ServerRequestGetShop {
+    status: 'get-shop';
+    result: 'error' | 'ok';
+    dailyDeals?: string[];
+    chestsStats?: {
+        random: {
+            common: ShopChestStats;
+            rare: ShopChestStats;
+            epic: ShopChestStats;
+        };
+        target: {
+            common: ShopChestStats;
+            rare: ShopChestStats;
+            epic: ShopChestStats;
+        };
+    };
+    callbackID?: string;
+}
+
 export type TCPServerRequest =
     | ServerRequestHandshake
     | ServerRequestCheckIntegrity
@@ -620,4 +655,5 @@ export type TCPServerRequest =
     | ServerRequestCancelFriend
     | ServerRequestRemoveFriend
     | ServerRequestBlockFriend
-    | ServerRequestUnblockFriend;
+    | ServerRequestUnblockFriend
+    | ServerRequestGetShop;

@@ -2,6 +2,7 @@ import { Achievement } from './Achievements';
 import { Ad } from './Ads';
 import { Contributor } from './Contributors';
 import { DailyQuestReward } from './DailyQuestReward';
+import { IAP } from './IAP';
 import { Item } from './Items';
 import { MissionType } from './Missions';
 import { Quote } from './Quotes';
@@ -15,6 +16,7 @@ export interface DataTypes {
     ads: Ad[];
     contributors: Contributor[];
     dailyQuestsRewards: DailyQuestReward[];
+    iap: IAP[];
     items: Item[];
     missions: MissionType[];
     quotes: Quote[];

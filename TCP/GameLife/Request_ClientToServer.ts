@@ -426,6 +426,15 @@ export interface ClientRequestUnblockFriend {
     callbackID?: string;
 }
 
+//
+// Shop
+//
+
+export interface ClientRequestGetShop {
+    action: 'get-shop';
+    callbackID?: string;
+}
+
 export type TCPClientRequest =
     | ClientRequestHandshake
     | ClientRequestCheckIntegrity
@@ -479,4 +488,5 @@ export type TCPClientRequest =
     | ClientRequestCancelFriend
     | ClientRequestRemoveFriend
     | ClientRequestBlockFriend
-    | ClientRequestUnblockFriend;
+    | ClientRequestUnblockFriend
+    | ClientRequestGetShop;
