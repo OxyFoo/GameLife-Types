@@ -601,6 +601,36 @@ export interface ServerRequestGetShop {
     callbackID?: string;
 }
 
+export interface ServerRequestBuyIAP {
+    status: 'buy-iap';
+    result: 'ok' | 'invalid-sku' | 'invalid-receipt' | 'already-processed' | 'verification-failed' | 'error';
+    /** New total Ox amount after purchase */
+    ox?: number;
+    /** Amount of Ox added by this purchase */
+    addedOx?: number;
+    callbackID?: string;
+}
+
+export interface ServerRequestBuyRandomChest {
+    status: 'buy-random-chest';
+    result: 'ok' | 'invalid-rarity' | 'not-enough-ox' | 'error';
+    /** New total Ox amount after purchase */
+    ox?: number;
+    /** New item received from chest */
+    newItem?: Stuff;
+    callbackID?: string;
+}
+
+export interface ServerRequestBuyTargetedChest {
+    status: 'buy-targeted-chest';
+    result: 'ok' | 'invalid-rarity' | 'invalid-slot' | 'not-enough-ox' | 'no-items-available' | 'error';
+    /** New total Ox amount after purchase */
+    ox?: number;
+    /** New item received from chest */
+    newItem?: Stuff;
+    callbackID?: string;
+}
+
 export type TCPServerRequest =
     | ServerRequestHandshake
     | ServerRequestCheckIntegrity
@@ -656,4 +686,7 @@ export type TCPServerRequest =
     | ServerRequestRemoveFriend
     | ServerRequestBlockFriend
     | ServerRequestUnblockFriend
-    | ServerRequestGetShop;
+    | ServerRequestGetShop
+    | ServerRequestBuyIAP
+    | ServerRequestBuyRandomChest
+    | ServerRequestBuyTargetedChest;

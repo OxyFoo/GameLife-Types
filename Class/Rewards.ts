@@ -2,6 +2,8 @@ import { Rarities } from '@/Global/Rarities';
 import { Stuff } from '@/Data/User/Inventory';
 import { ItemID } from '@/Data/App/Items';
 
+export type ChestRarity = Exclude<Rarities, 'legendary'>;
+
 interface TitleRawReward {
     Type: 'Title';
     TitleID: number;
@@ -34,11 +36,11 @@ interface ItemReward {
 
 interface ChestRawReward {
     Type: 'Chest';
-    ChestRarity: Rarities;
+    ChestRarity: ChestRarity;
 }
 interface ChestReward {
     Type: 'Chest';
-    ChestRarity: Rarities;
+    ChestRarity: ChestRarity;
     Stuff: Stuff;
 }
 

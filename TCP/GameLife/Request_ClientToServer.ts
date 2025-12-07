@@ -11,6 +11,7 @@ import { MissionKeys } from '@/Data/App/Missions';
 import { ReportType } from '@/Data/App/Reports';
 import { DailyQuestData } from '@/Data/User/DailyQuest';
 import { AvatarObject } from '@/Data/User/Inventory';
+import { Rarities } from '@/Global/Rarities';
 
 //
 // Device Authentication
@@ -435,6 +436,35 @@ export interface ClientRequestGetShop {
     callbackID?: string;
 }
 
+export interface ClientRequestBuyIAP {
+    action: 'buy-iap';
+    /** Product SKU (e.g., "ox_100") */
+    sku: string;
+    /** Platform: 'ios' or 'android' */
+    platform: 'ios' | 'android';
+    /** Transaction ID from the store */
+    transactionId: string;
+    /** Purchase token (Android) or receipt data (iOS) */
+    purchaseToken: string;
+    callbackID?: string;
+}
+
+export interface ClientRequestBuyRandomChest {
+    action: 'buy-random-chest';
+    /** Chest rarity to buy */
+    rarity: Exclude<Rarities, 'legendary'>;
+    callbackID?: string;
+}
+
+export interface ClientRequestBuyTargetedChest {
+    action: 'buy-targeted-chest';
+    /** Chest rarity to buy */
+    rarity: Exclude<Rarities, 'legendary'>;
+    /** Item slot to target */
+    slot: 'hair' | 'top' | 'bottom' | 'shoes';
+    callbackID?: string;
+}
+
 export type TCPClientRequest =
     | ClientRequestHandshake
     | ClientRequestCheckIntegrity
@@ -489,4 +519,7 @@ export type TCPClientRequest =
     | ClientRequestRemoveFriend
     | ClientRequestBlockFriend
     | ClientRequestUnblockFriend
-    | ClientRequestGetShop;
+    | ClientRequestGetShop
+    | ClientRequestBuyIAP
+    | ClientRequestBuyRandomChest
+    | ClientRequestBuyTargetedChest;
