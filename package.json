@@ -1,6 +1,6 @@
 {
   "name": "@oxyfoo/gamelife-types",
-  "version": "2.1.6",
+  "version": "2.2.0",
   "description": "GameLife Types - TypeScript types for the GameLife project.",
   "main": "./index.js",
   "types": "./index.d.ts",
@@ -26,6 +26,7 @@
     "**/*.d.ts"
   ],
   "devDependencies": {
+    "@oxyfoo/avatar-factory": "^1.1.3",
     "@typescript-eslint/eslint-plugin": "^8.32.0",
     "@typescript-eslint/parser": "^8.32.0",
     "eslint": "^9.26.0",

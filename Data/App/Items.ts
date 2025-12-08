@@ -1,21 +1,10 @@
 import { Rarities } from '@/Global/Rarities';
 import { LangType } from '@/Global/Langs';
+import { ItemName } from '@oxyfoo/avatar-factory';
 
 export type CharactersID = 'human_00' | 'human_01';
 
-export type ItemID =
-    | 'hair_00'
-    | 'top_00'
-    | 'bottom_00'
-    | 'shoes_00'
-    | 'hair_01'
-    | 'top_01'
-    | 'bottom_01'
-    | 'shoes_01'
-    | 'hair_02'
-    | 'top_02'
-    | 'bottom_02'
-    | 'shoes_02';
+export type ItemID = ItemName;
 
 export type ItemSlot = 'hair' | 'top' | 'bottom' | 'shoes';
 
