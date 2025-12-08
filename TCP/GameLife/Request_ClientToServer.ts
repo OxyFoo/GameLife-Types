@@ -155,6 +155,13 @@ export interface ClientRequestSaveInventories {
     callbackID?: string;
 }
 
+export interface ClientRequestSellStuff {
+    action: 'sell-stuff';
+    /** The stuff ID to sell (inventory item ID) */
+    stuffID: number;
+    callbackID?: string;
+}
+
 //
 // Ads
 //
@@ -492,6 +499,7 @@ export type TCPClientRequest =
     | ClientRequestSetUserData
     | ClientRequestGetInventories
     | ClientRequestSaveInventories
+    | ClientRequestSellStuff
     | ClientRequestGetAds
     | ClientRequestWatchAd
     | ClientRequestCreateSkill

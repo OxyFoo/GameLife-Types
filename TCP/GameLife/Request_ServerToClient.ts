@@ -641,6 +641,14 @@ export interface ServerRequestBuyDailyDeal {
     callbackID?: string;
 }
 
+export interface ServerRequestSellStuff {
+    status: 'sell-stuff';
+    result: 'ok' | 'invalid-item' | 'item-not-found' | 'item-equipped' | 'error';
+    /** New total Ox amount after sell */
+    ox?: number;
+    callbackID?: string;
+}
+
 export type TCPServerRequest =
     | ServerRequestHandshake
     | ServerRequestCheckIntegrity
@@ -700,4 +708,5 @@ export type TCPServerRequest =
     | ServerRequestBuyIAP
     | ServerRequestBuyRandomChest
     | ServerRequestBuyTargetedChest
-    | ServerRequestBuyDailyDeal;
+    | ServerRequestBuyDailyDeal
+    | ServerRequestSellStuff;
