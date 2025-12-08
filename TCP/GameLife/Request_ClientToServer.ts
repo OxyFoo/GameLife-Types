@@ -465,6 +465,13 @@ export interface ClientRequestBuyTargetedChest {
     callbackID?: string;
 }
 
+export interface ClientRequestBuyDailyDeal {
+    action: 'buy-daily-deal';
+    /** Item ID to buy */
+    itemID: string;
+    callbackID?: string;
+}
+
 export type TCPClientRequest =
     | ClientRequestHandshake
     | ClientRequestCheckIntegrity
@@ -522,4 +529,5 @@ export type TCPClientRequest =
     | ClientRequestGetShop
     | ClientRequestBuyIAP
     | ClientRequestBuyRandomChest
-    | ClientRequestBuyTargetedChest;
+    | ClientRequestBuyTargetedChest
+    | ClientRequestBuyDailyDeal;

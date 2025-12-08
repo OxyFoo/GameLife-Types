@@ -631,6 +631,16 @@ export interface ServerRequestBuyTargetedChest {
     callbackID?: string;
 }
 
+export interface ServerRequestBuyDailyDeal {
+    status: 'buy-daily-deal';
+    result: 'ok' | 'invalid-item' | 'item-not-available' | 'already-purchased' | 'not-enough-ox' | 'error';
+    /** New total Ox amount after purchase */
+    ox?: number;
+    /** New item received */
+    newItem?: Stuff;
+    callbackID?: string;
+}
+
 export type TCPServerRequest =
     | ServerRequestHandshake
     | ServerRequestCheckIntegrity
@@ -689,4 +699,5 @@ export type TCPServerRequest =
     | ServerRequestGetShop
     | ServerRequestBuyIAP
     | ServerRequestBuyRandomChest
-    | ServerRequestBuyTargetedChest;
+    | ServerRequestBuyTargetedChest
+    | ServerRequestBuyDailyDeal;
