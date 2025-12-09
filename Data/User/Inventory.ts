@@ -20,5 +20,6 @@ export type SaveObject_Inventory = {
     titleIDs: number[];
     stuffs: Stuff[];
     avatar: AvatarObject;
+    avatarEdited: boolean;
     token: number;
 };
