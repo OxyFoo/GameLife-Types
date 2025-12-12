@@ -203,8 +203,9 @@ export interface ServerRequestGetAds {
 
 export interface ServerRequestWatchAd {
     status: 'watch-ad';
-    result: 'ok' | 'error';
+    result: 'ok' | 'error' | 'limit-reached';
     ox?: number;
+    adRemaining?: number;
     callbackID?: string;
 }
 

@@ -9,4 +9,5 @@ export interface Account {
     Birthtime: number | null;
     LastChangeBirth: number | null;
     AccountAge: number;
+    AdRemaining: number;
 }
