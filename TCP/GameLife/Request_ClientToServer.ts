@@ -453,6 +453,8 @@ export interface ClientRequestBuyIAP {
     transactionId: string;
     /** Purchase token (Android) or receipt data (iOS) */
     purchaseToken: string;
+    /** Quantity purchased (default: 1) */
+    quantity?: number;
     callbackID?: string;
 }
 
