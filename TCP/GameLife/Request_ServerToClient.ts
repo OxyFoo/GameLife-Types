@@ -614,7 +614,7 @@ export interface ServerRequestBuyIAP {
 
 export interface ServerRequestBuyRandomChest {
     status: 'buy-random-chest';
-    result: 'ok' | 'invalid-rarity' | 'not-enough-ox' | 'error';
+    result: 'ok' | 'invalid-rarity' | 'not-enough-ox' | 'no-items-available' | 'error';
     /** New total Ox amount after purchase */
     ox?: number;
     /** New item received from chest */
