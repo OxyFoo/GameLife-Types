@@ -19,7 +19,10 @@ export interface AvatarObject {
 export type SaveObject_Inventory = {
     titleIDs: number[];
     stuffs: Stuff[];
+    token: number;
+};
+
+export type SaveObject_Avatar = {
     avatar: AvatarObject;
     avatarEdited: boolean;
-    token: number;
 };
