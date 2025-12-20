@@ -148,8 +148,14 @@ export interface ClientRequestGetInventories {
     callbackID?: string;
 }
 
-export interface ClientRequestSaveInventories {
-    action: 'save-inventories';
+export interface ClientRequestGetAvatar {
+    action: 'get-avatar';
+    token: number;
+    callbackID?: string;
+}
+
+export interface ClientRequestSaveAvatar {
+    action: 'save-avatar';
     avatar: AvatarObject;
     token: number;
     callbackID?: string;
@@ -500,7 +506,8 @@ export type TCPClientRequest =
     | ClientRequestGetUserData
     | ClientRequestSetUserData
     | ClientRequestGetInventories
-    | ClientRequestSaveInventories
+    | ClientRequestGetAvatar
+    | ClientRequestSaveAvatar
     | ClientRequestSellStuff
     | ClientRequestGetAds
     | ClientRequestWatchAd

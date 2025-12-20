@@ -25,4 +25,5 @@ export type SaveObject_Inventory = {
 export type SaveObject_Avatar = {
     avatar: AvatarObject;
     avatarEdited: boolean;
+    token: number;
 };

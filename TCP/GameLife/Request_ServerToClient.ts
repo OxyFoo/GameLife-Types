@@ -178,14 +178,25 @@ export interface ServerRequestGetInventories {
         | {
               titleIDs: number[];
               stuffs: Stuff[];
+              token: number;
+          };
+    callbackID?: string;
+}
+
+export interface ServerRequestGetAvatar {
+    status: 'get-avatar';
+    result:
+        | 'error'
+        | 'already-up-to-date'
+        | {
               avatar: AvatarObject;
               token: number;
           };
     callbackID?: string;
 }
 
-export interface ServerRequestSaveInventories {
-    status: 'save-inventories';
+export interface ServerRequestSaveAvatar {
+    status: 'save-avatar';
     result: 'error' | { token: number };
     callbackID?: string;
 }
@@ -669,7 +680,8 @@ export type TCPServerRequest =
     | ServerRequestGetUserData
     | ServerRequestSetUserData
     | ServerRequestGetInventories
-    | ServerRequestSaveInventories
+    | ServerRequestGetAvatar
+    | ServerRequestSaveAvatar
     | ServerRequestGetAds
     | ServerRequestWatchAd
     | ServerRequestCreateSkill
