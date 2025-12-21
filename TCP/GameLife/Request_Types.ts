@@ -1,3 +1,6 @@
+import { AvatarName, ItemName } from '@oxyfoo/avatar-factory';
+export { AvatarName, ItemName };
+
 export type ConnectionState = 'idle' | 'connecting' | 'connected' | 'disconnected' | 'wrong-ssl-pinning' | 'error';
 
 export type ServerStatus =
@@ -24,12 +27,12 @@ export interface LeaderboardPlayer {
     title: number;
     weeklyXP: number;
     avatar: {
-        Skin: string;
+        Skin: AvatarName;
         SkinColor: number;
-        Hair: string;
-        Top: string;
-        Bottom: string;
-        Shoes: string;
+        Hair: ItemName;
+        Top: ItemName;
+        Bottom: ItemName;
+        Shoes: ItemName;
     };
 }
 
