@@ -441,6 +441,15 @@ export interface ClientRequestUnblockFriend {
 }
 
 //
+// Leaderboard
+//
+
+export interface ClientRequestGetLeaderboard {
+    action: 'get-leaderboard';
+    callbackID?: string;
+}
+
+//
 // Shop
 //
 
@@ -543,6 +552,7 @@ export type TCPClientRequest =
     | ClientRequestRemoveFriend
     | ClientRequestBlockFriend
     | ClientRequestUnblockFriend
+    | ClientRequestGetLeaderboard
     | ClientRequestGetShop
     | ClientRequestBuyIAP
     | ClientRequestBuyRandomChest

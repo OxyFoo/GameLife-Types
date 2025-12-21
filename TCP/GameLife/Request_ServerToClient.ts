@@ -13,6 +13,7 @@ import { DailyQuestData } from '@/Data/User/DailyQuest';
 import { MissionItem } from '@/Data/User/Missions';
 import { Friend, UserOnline } from '@/Data/User/Multiplayer';
 import { NotificationInApp, NotificationInAppDataType } from '@/Class/NotificationsInApp';
+import { LeaderboardPlayer, ShopChestStats } from './Request_Types';
 
 //
 // Device Authentication
@@ -580,19 +581,27 @@ export interface ServerRequestUnblockFriend {
 }
 
 //
-// Shop
+// Leaderboard
 //
 
-export interface ShopChestStats {
-    priceOriginal: number;
-    priceDiscount: number;
-    probas: {
-        common: number;
-        rare: number;
-        epic: number;
-        legendary: number;
-    };
+export interface ServerRequestGetLeaderboard {
+    status: 'get-leaderboard';
+    result:
+        | 'error'
+        | {
+              /** Top players by weekly XP */
+              players: LeaderboardPlayer[];
+              /** Current user's data if not in top 30, null otherwise */
+              self: LeaderboardPlayer | null;
+              /** Timestamp of the last Monday (start of the week) in seconds UTC */
+              weekStart: number;
+          };
+    callbackID?: string;
 }
+
+//
+// Shop
+//
 
 export interface ServerRequestGetShop {
     status: 'get-shop';
@@ -717,6 +726,7 @@ export type TCPServerRequest =
     | ServerRequestRemoveFriend
     | ServerRequestBlockFriend
     | ServerRequestUnblockFriend
+    | ServerRequestGetLeaderboard
     | ServerRequestGetShop
     | ServerRequestBuyIAP
     | ServerRequestBuyRandomChest
