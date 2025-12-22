@@ -93,6 +93,18 @@ export interface ClientRequestGoogleSigninTokenReset {
     callbackID?: string;
 }
 
+export interface ClientRequestAppleSigninTokenSubmit {
+    action: 'apple-signin-token-submit';
+    email: string;
+    token: string;
+    callbackID?: string;
+}
+
+export interface ClientRequestAppleSigninTokenReset {
+    action: 'apple-signin-token-reset';
+    callbackID?: string;
+}
+
 //
 // Account
 //
@@ -507,6 +519,8 @@ export type TCPClientRequest =
     | ClientRequestLogin
     | ClientRequestGoogleSigninTokenSubmit
     | ClientRequestGoogleSigninTokenReset
+    | ClientRequestAppleSigninTokenSubmit
+    | ClientRequestAppleSigninTokenReset
     | ClientRequestSetLang
     | ClientRequestSetUsername
     | ClientRequestGetDevices

@@ -104,6 +104,18 @@ export interface ServerRequestGoogleSigninTokenReset {
     callbackID?: string;
 }
 
+export interface ServerRequestAppleSigninTokenSubmit {
+    status: 'apple-signin-token-submit';
+    result: 'can-signin' | 'can-login' | 'invalid' | 'error';
+    callbackID?: string;
+}
+
+export interface ServerRequestAppleSigninTokenReset {
+    status: 'apple-signin-token-reset';
+    result: 'ok' | 'error';
+    callbackID?: string;
+}
+
 //
 // Account
 //
@@ -680,6 +692,8 @@ export type TCPServerRequest =
     | ServerRequestLogin
     | ServerRequestGoogleSigninTokenSubmit
     | ServerRequestGoogleSigninTokenReset
+    | ServerRequestAppleSigninTokenSubmit
+    | ServerRequestAppleSigninTokenReset
     | ServerRequestSetLang
     | ServerRequestSetUsername
     | ServerRequestGetDevices
