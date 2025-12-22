@@ -1,6 +1,6 @@
-import { Rarities } from '@/Global/Rarities';
-import { LangType } from '@/Global/Langs';
-import { ItemName } from '@oxyfoo/avatar-factory';
+import type { Rarities } from '@/Global/Rarities';
+import type { LangType } from '@/Global/Langs';
+import type { ItemName } from '@oxyfoo/avatar-factory';
 
 export type CharactersID = 'human_00' | 'human_01';
 

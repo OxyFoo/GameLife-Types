@@ -1,5 +1,5 @@
-import { AvatarName, ItemName } from '@oxyfoo/avatar-factory';
-export { AvatarName, ItemName };
+import type { AvatarName, ItemName } from '@oxyfoo/avatar-factory';
+export type { AvatarName, ItemName };
 
 export type ConnectionState = 'idle' | 'connecting' | 'connected' | 'disconnected' | 'wrong-ssl-pinning' | 'error';
 
