@@ -21,7 +21,8 @@ import { LeaderboardPlayer, ShopChestStats } from './Request_Types';
 
 export interface ServerRequestHandshake {
     status: 'handshake';
-    result: 'ok' | 'maintenance' | 'update' | 'update-optional' | 'downdate' | 'error';
+    result: 'ok' | 'update' | 'update-optional' | 'downdate' | 'error';
+    maintenance: boolean;
     serverVersion?: string;
     callbackID?: string;
 }
