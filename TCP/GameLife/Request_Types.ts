@@ -44,6 +44,8 @@ export interface LeaderboardPlayer {
     totalXP: number;
     totalActivities: number;
     totalTime: number;
+    /** User's total XP (all time) */
+    totalUserXP: number;
     avatar: {
         Skin: AvatarName;
         SkinColor: number;

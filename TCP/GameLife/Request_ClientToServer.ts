@@ -463,6 +463,8 @@ export interface ClientRequestGetLeaderboard {
     action: 'get-leaderboard';
     /** Period type to fetch. Defaults to 'weekly' if not provided */
     periodType?: LeaderboardPeriodType;
+    /** Number of players to retrieve. Defaults to 10, max 100 */
+    limit?: number;
     callbackID?: string;
 }
 
