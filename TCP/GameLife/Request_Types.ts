@@ -20,12 +20,28 @@ export type LoginStatus = 'ok' | 'free' | 'waitMailConfirmation' | 'newDevice' |
 
 export type SigninStatus = 'ok' | 'pseudoUsed' | 'pseudoIncorrect' | 'limitAccount' | 'error';
 
+export type LeaderboardPeriodType = 'weekly' | 'monthly' | 'yearly';
+
+export interface LeaderboardUpdateData {
+    periodType: LeaderboardPeriodType;
+    /** Timestamp in seconds of the period start (Monday for weekly, 1st of month, 1st of year) */
+    periodStart: number;
+    /** Total XP for this period */
+    xp: number;
+    /** Total number of activities for this period */
+    activities: number;
+    /** Total time in minutes for this period */
+    time: number;
+}
+
 export interface LeaderboardPlayer {
     rank: number;
     accountID: number;
     username: string;
     title: number;
-    weeklyXP: number;
+    totalXP: number;
+    totalActivities: number;
+    totalTime: number;
     avatar: {
         Skin: AvatarName;
         SkinColor: number;

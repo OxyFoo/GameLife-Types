@@ -12,6 +12,7 @@ import { ReportType } from '@/Data/App/Reports';
 import { DailyQuestData } from '@/Data/User/DailyQuest';
 import { AvatarObject } from '@/Data/User/Inventory';
 import { Rarities } from '@/Global/Rarities';
+import { LeaderboardPeriodType, LeaderboardUpdateData } from './Request_Types';
 
 //
 // Device Authentication
@@ -226,6 +227,8 @@ export interface ClientRequestSaveActivities {
     xp: number;
     stats: StatsXP;
     token: number;
+    /** Leaderboard updates for affected periods (weekly, monthly, yearly) */
+    leaderboardUpdates?: LeaderboardUpdateData[];
     callbackID?: string;
 }
 
@@ -458,6 +461,8 @@ export interface ClientRequestUnblockFriend {
 
 export interface ClientRequestGetLeaderboard {
     action: 'get-leaderboard';
+    /** Period type to fetch. Defaults to 'weekly' if not provided */
+    periodType?: LeaderboardPeriodType;
     callbackID?: string;
 }
 

@@ -13,7 +13,7 @@ import { DailyQuestData } from '@/Data/User/DailyQuest';
 import { MissionItem } from '@/Data/User/Missions';
 import { Friend, UserOnline } from '@/Data/User/Multiplayer';
 import { NotificationInApp, NotificationInAppDataType } from '@/Class/NotificationsInApp';
-import { LeaderboardPlayer, ShopChestStats } from './Request_Types';
+import { LeaderboardPeriodType, LeaderboardPlayer, ShopChestStats } from './Request_Types';
 
 //
 // Device Authentication
@@ -602,12 +602,14 @@ export interface ServerRequestGetLeaderboard {
     result:
         | 'error'
         | {
-              /** Top players by weekly XP */
+              /** Top players by XP for the requested period */
               players: LeaderboardPlayer[];
               /** Current user's data if not in top 30, null otherwise */
               self: LeaderboardPlayer | null;
-              /** Timestamp of the last Monday (start of the week) in seconds UTC */
-              weekStart: number;
+              /** Period type returned */
+              periodType: LeaderboardPeriodType;
+              /** Timestamp of the period start (Monday for weekly, 1st of month, 1st of year) in seconds UTC */
+              periodStart: number;
           };
     callbackID?: string;
 }
