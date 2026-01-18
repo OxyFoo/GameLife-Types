@@ -32,6 +32,8 @@ export interface LeaderboardUpdateData {
     activities: number;
     /** Total time in minutes for this period */
     time: number;
+    /** User's total XP (all time) at the time of this update */
+    totalUserXP: number;
 }
 
 export interface LeaderboardPlayer {
