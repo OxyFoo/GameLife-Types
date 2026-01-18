@@ -1,6 +1,6 @@
 {
   "name": "@oxyfoo/gamelife-types",
-  "version": "2.2.12",
+  "version": "2.2.13",
   "description": "GameLife Types - TypeScript types for the GameLife project.",
   "main": "./index.js",
   "types": "./index.d.ts",
