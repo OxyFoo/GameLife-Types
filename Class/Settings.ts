@@ -9,7 +9,6 @@ export type SaveObject_Settings = {
     testMessageReaded: boolean;
     waitingEmail: string;
     tutoFinished: boolean;
-    questHeatMapIndex: number;
     regularNotificationsLastRefresh: number;
     morningNotifications: boolean;
     eveningNotifications: boolean;
