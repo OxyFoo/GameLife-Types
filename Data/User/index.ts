@@ -12,5 +12,4 @@ export * from './Informations';
 export * from './Inventory';
 export * from './Missions';
 export * from './Multiplayer';
-export * from './Quests';
 export * from './Todos';

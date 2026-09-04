@@ -8,7 +8,6 @@ import { Account } from '@/Data/Server/Account';
 import { AvatarObject, Stuff } from '@/Data/User/Inventory';
 import { Ad } from '@/Data/App/Ads';
 import { GeneratedSkill } from '@/Data/App/Skills';
-import { QuestSaved } from '@/Data/User/Quests';
 import { DailyQuestData } from '@/Data/User/DailyQuest';
 import { MissionItem } from '@/Data/User/Missions';
 import { Friend, UserOnline } from '@/Data/User/Multiplayer';
@@ -324,36 +323,6 @@ export interface ServerRequestClaimAchievement {
         | {
               rewards: Reward[];
               newOx: number;
-              token: number;
-          };
-    callbackID?: string;
-}
-
-//
-// Quests
-//
-
-export interface ServerRequestGetQuests {
-    status: 'get-quests';
-    result:
-        | 'error'
-        | 'already-up-to-date'
-        | {
-              quests: QuestSaved[];
-              sort: number[];
-              token: number;
-          };
-    callbackID?: string;
-}
-
-export interface ServerRequestSaveQuests {
-    status: 'save-quests';
-    result:
-        | 'wrong-quests'
-        | 'not-up-to-date'
-        | 'error'
-        | {
-              newQuests: QuestSaved[];
               token: number;
           };
     callbackID?: string;
@@ -721,8 +690,6 @@ export type TCPServerRequest =
     | ServerRequestGetAchievements
     | ServerRequestAddAchievement
     | ServerRequestClaimAchievement
-    | ServerRequestGetQuests
-    | ServerRequestSaveQuests
     | ServerRequestGetDailyQuestToday
     | ServerRequestGetDailyQuests
     | ServerRequestSaveDailyQuests

@@ -3,7 +3,6 @@ import { StatsXP } from '@/Class/Experience';
 import { IntegrityToken } from '@/Class/Server';
 import { AdNames } from '@/Data/App/Ads';
 import { DataHashes } from '@/Data/App';
-import { Quest, QuestSaved } from '@/Data/User/Quests';
 import { Todo, TodoSaved } from '@/Data/User/Todos';
 import { Activity, ActivitySaved } from '@/Data/User/Activities';
 import { MissionItem } from '@/Data/User/Missions';
@@ -252,26 +251,6 @@ export interface ClientRequestAddAchievement {
 export interface ClientRequestClaimAchievement {
     action: 'claim-achievement';
     achievementID: number;
-    token: number;
-    callbackID?: string;
-}
-
-//
-// Quests
-//
-
-export interface ClientRequestGetQuests {
-    action: 'get-quests';
-    token: number;
-    callbackID?: string;
-}
-
-export interface ClientRequestSaveQuests {
-    action: 'save-quests';
-    questsToAdd: Quest[];
-    questsToEdit: QuestSaved[];
-    questsToDelete: number[];
-    sort: number[];
     token: number;
     callbackID?: string;
 }
@@ -548,8 +527,6 @@ export type TCPClientRequest =
     | ClientRequestGetAchievements
     | ClientRequestAddAchievement
     | ClientRequestClaimAchievement
-    | ClientRequestGetQuests
-    | ClientRequestSaveQuests
     | ClientRequestGetDailyQuestToday
     | ClientRequestGetDailyQuests
     | ClientRequestSaveDailyQuests
