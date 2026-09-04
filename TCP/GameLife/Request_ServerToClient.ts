@@ -279,6 +279,10 @@ export interface ServerRequestSaveActivities {
         | {
               newActivities: ActivitySaved[];
               token: number;
+              /** New total of ox owned by the account (after activities rewards) */
+              ox: number;
+              /** Ox granted by this save (activities rewards, 1 ox per minute, 12h/day limit) */
+              oxGained: number;
           };
     callbackID?: string;
 }
