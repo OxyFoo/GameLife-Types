@@ -10,4 +10,6 @@ export interface Account {
     LastChangeBirth: number | null;
     AccountAge: number;
     AdRemaining: number;
+    /** Expiry (unix seconds) of the used weekly base-price slot for activity deletions/editions, null if available */
+    OxFreeSlotUntil: number | null;
 }

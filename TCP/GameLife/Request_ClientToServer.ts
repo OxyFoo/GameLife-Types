@@ -227,6 +227,25 @@ export interface ClientRequestSaveActivities {
     token: number;
     /** Leaderboard updates for affected periods (weekly, monthly, yearly) */
     leaderboardUpdates?: LeaderboardUpdateData[];
+    /**
+     * Ox rules implemented by the client: 2 = deletions and editions cost the ox they granted, one
+     * base-price operation per week then x1.5, balance may go negative. Absent for older apps
+     * (legacy: the server only credits, never debits).
+     */
+    oxRules?: 2;
+    /**
+     * Signed ox change of the batch as the app computed it when the user confirmed a costly
+     * operation (penalties included, catch-up credits excluded). When the server computes a
+     * different amount it answers 'ox-quote-changed' instead of applying a price the user has
+     * not seen. Absent when no costly operation is pending.
+     */
+    oxExpectedDelta?: number;
+    /**
+     * Identity (`id:<ID>`) of the pending deletion/edition the app quoted at base price, i.e.
+     * the first costly operation confirmed while the weekly slot was available. The server gives
+     * the slot to that operation when it is costly, to the largest cost otherwise.
+     */
+    oxFreeKey?: string;
     callbackID?: string;
 }
 

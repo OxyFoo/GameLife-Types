@@ -54,4 +54,8 @@ export type SaveObject_Activities = {
     deletions: number[];
     current: CurrentActivity | null;
     token: number;
+    /** Batch total (penalties included) the user confirmed for the pending costly operations, null when none */
+    oxQuotedDelta?: number | null;
+    /** Pending edition/deletion (`id:<ID>`) quoted at base price, null when none */
+    oxFreeKey?: string | null;
 };

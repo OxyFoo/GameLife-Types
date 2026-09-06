@@ -274,14 +274,28 @@ export interface ServerRequestSaveActivities {
         | 'wrong-activities'
         | 'not-up-to-date'
         | 'error'
+        /** Balance is negative and the batch holds a costly operation: nothing was applied */
+        | 'ox-negative'
+        /** The weekly base-price slot was used elsewhere: nothing was applied, see `oxDelta` for the real price */
+        | 'ox-quote-changed'
         | {
               newActivities: ActivitySaved[];
               token: number;
-              /** New total of ox owned by the account (after activities rewards) */
+              /** New balance of the account */
               ox: number;
-              /** Ox granted by this save (activities rewards, 1 ox per minute, 12h/day limit) */
-              oxGained: number;
+              /** Signed change of the balance applied by this save (credits, costs and penalties) */
+              oxDelta: number;
+              /** Part of `oxDelta` that is the x1.5 penalty of operations beyond the weekly slot */
+              oxPenalty: number;
+              /** Expiry (unix seconds) of the used weekly slot, null if the base price is available */
+              oxFreeSlotUntil: number | null;
           };
+    /** Fresh balance, sent with 'not-up-to-date', 'ox-negative' and 'ox-quote-changed' */
+    ox?: number;
+    /** Fresh slot expiry, sent with 'not-up-to-date', 'ox-negative' and 'ox-quote-changed' */
+    oxFreeSlotUntil?: number | null;
+    /** With 'ox-quote-changed': the signed change the batch would apply, penalties included */
+    oxDelta?: number;
     callbackID?: string;
 }
 

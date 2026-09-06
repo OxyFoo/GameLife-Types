@@ -8,6 +8,8 @@ export type SaveObject_UserInformations = {
     UNSAVED_birthTime: number | null;
     xp: number;
     ox: number;
+    /** Expiry (unix seconds) of the used weekly base-price slot for activity deletions/editions, null if available */
+    oxFreeSlotUntil: number | null;
     adRemaining: number;
     adTotalWatched: number;
     achievementSelfFriend: boolean;
