@@ -1,7 +1,6 @@
 import { Nullable } from '@/Global/Utils';
 import { Reward } from '@/Class/Rewards';
 import { ActivitySaved } from '@/Data/User/Activities';
-import { TodoSaved } from '@/Data/User/Todos';
 import { AchievementItem } from '@/Data/User/Achievements';
 import { DataHashes, DataTypes } from '@/Data/App';
 import { Account } from '@/Data/Server/Account';
@@ -421,36 +420,6 @@ export interface ServerRequestClaimMission {
 }
 
 //
-// Todo
-//
-
-export interface ServerRequestGetTodo {
-    status: 'get-todo';
-    result:
-        | 'error'
-        | 'already-up-to-date'
-        | {
-              todo: TodoSaved[];
-              sort: number[];
-              token: number;
-          };
-    callbackID?: string;
-}
-
-export interface ServerRequestSaveTodo {
-    status: 'save-todo';
-    result:
-        | 'error'
-        | 'not-up-to-date'
-        | 'wrong-todo'
-        | {
-              newTodos: TodoSaved[];
-              token: number;
-          };
-    callbackID?: string;
-}
-
-//
 // Notifications
 //
 
@@ -697,8 +666,6 @@ export type TCPServerRequest =
     | ServerRequestGetMissions
     | ServerRequestSaveMissions
     | ServerRequestClaimMission
-    | ServerRequestGetTodo
-    | ServerRequestSaveTodo
     | ServerRequestUpdateNotifications
     | ServerRequestSendError
     | ServerRequestSendReport

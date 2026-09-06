@@ -3,7 +3,6 @@ import { StatsXP } from '@/Class/Experience';
 import { IntegrityToken } from '@/Class/Server';
 import { AdNames } from '@/Data/App/Ads';
 import { DataHashes } from '@/Data/App';
-import { Todo, TodoSaved } from '@/Data/User/Todos';
 import { Activity, ActivitySaved } from '@/Data/User/Activities';
 import { MissionItem } from '@/Data/User/Missions';
 import { MissionKeys } from '@/Data/App/Missions';
@@ -310,26 +309,6 @@ export interface ClientRequestClaimMission {
 }
 
 //
-// Todos
-//
-
-export interface ClientRequestGetTodo {
-    action: 'get-todo';
-    token: number;
-    callbackID?: string;
-}
-
-export interface ClientRequestSaveTodo {
-    action: 'save-todo';
-    todoToAdd?: Todo[];
-    todoToEdit?: TodoSaved[];
-    todoToDelete?: number[];
-    newSort?: number[];
-    token: number;
-    callbackID?: string;
-}
-
-//
 // Metrics
 //
 
@@ -534,8 +513,6 @@ export type TCPClientRequest =
     | ClientRequestGetMissions
     | ClientRequestSaveMissions
     | ClientRequestClaimMission
-    | ClientRequestGetTodo
-    | ClientRequestSaveTodo
     | ClientRequestSendError
     | ClientRequestSendReport
     | ClientRequestSendStatistics
