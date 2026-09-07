@@ -232,6 +232,29 @@ export interface ServerRequestWatchAd {
     callbackID?: string;
 }
 
+export interface ServerRequestBonusActivityOx {
+    status: 'bonus-activity-ox';
+    /**
+     * 'not-eligible' covers every business refusal: unknown activity, not owned, outside the
+     * window, not started yet, already boosted, or nothing to boost. A single code on purpose —
+     * the precise reason stays in the server logs rather than telling a modified client which
+     * guard it just hit.
+     */
+    result:
+        | 'ok'
+        | 'error'
+        /** Daily quota of this ad reached */
+        | 'limit-reached'
+        | 'not-eligible';
+    /** Ox granted on top of what the activity already paid (half of it, rounded up) */
+    oxBonus?: number;
+    /** New balance of the account */
+    ox?: number;
+    /** Boosts left today */
+    remaining?: number;
+    callbackID?: string;
+}
+
 //
 // Activities
 //
@@ -666,6 +689,7 @@ export type TCPServerRequest =
     | ServerRequestSaveAvatar
     | ServerRequestGetAds
     | ServerRequestWatchAd
+    | ServerRequestBonusActivityOx
     | ServerRequestCreateSkill
     | ServerRequestAddSkill
     | ServerRequestGetActivities

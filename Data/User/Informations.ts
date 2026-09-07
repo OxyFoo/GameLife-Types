@@ -11,6 +11,8 @@ export type SaveObject_UserInformations = {
     /** Expiry (unix seconds) of the used weekly base-price slot for activity deletions/editions, null if available */
     oxFreeSlotUntil: number | null;
     adRemaining: number;
+    /** Activity ox boosts left today: own daily quota, not the `adRemaining` one */
+    activityBonusRemaining: number;
     adTotalWatched: number;
     achievementSelfFriend: boolean;
     purchasedCount: number;

@@ -194,6 +194,13 @@ export interface ClientRequestWatchAd {
     callbackID?: string;
 }
 
+export interface ClientRequestBonusActivityOx {
+    action: 'bonus-activity-ox';
+    /** Server ID of the activity that has just been saved */
+    activityID: number;
+    callbackID?: string;
+}
+
 //
 // Activities
 //
@@ -518,6 +525,7 @@ export type TCPClientRequest =
     | ClientRequestSellStuff
     | ClientRequestGetAds
     | ClientRequestWatchAd
+    | ClientRequestBonusActivityOx
     | ClientRequestCreateSkill
     | ClientRequestAddSkill
     | ClientRequestGetActivities
