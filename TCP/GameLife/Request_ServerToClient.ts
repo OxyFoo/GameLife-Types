@@ -12,6 +12,14 @@ import { MissionItem } from '@/Data/User/Missions';
 import { Friend, UserOnline } from '@/Data/User/Multiplayer';
 import { NotificationInApp, NotificationInAppDataType } from '@/Class/NotificationsInApp';
 import { LeaderboardPeriodType, LeaderboardPlayer, ShopChestStats } from './Request_Types';
+import {
+    RaidFeedEvent,
+    RaidHistoryEntry,
+    RaidLeaderboardPlayer,
+    RaidSimulation,
+    RaidSkip,
+    RaidStatePayload
+} from '@/Data/User/Raids';
 
 //
 // Device Authentication
@@ -312,6 +320,17 @@ export interface ServerRequestSaveActivities {
               oxPenalty: number;
               /** Expiry (unix seconds) of the used weekly slot, null if the base price is available */
               oxFreeSlotUntil: number | null;
+              /** Raid outcome of the batch, absent when there is no season or the account is below level 10 */
+              raid?: {
+                  /** Points scored by the activities added in this batch */
+                  points: number;
+                  /** At least one added activity was a critical hit */
+                  critical: boolean;
+                  /** Participant total after the replay */
+                  damage: number;
+                  /** Season progress after this save, [0;1] */
+                  progress: number;
+              };
           };
     /** Fresh balance, sent with 'not-up-to-date', 'ox-negative' and 'ox-quote-changed' */
     ox?: number;
@@ -573,6 +592,80 @@ export interface ServerRequestUnblockFriend {
 }
 
 //
+// Raids
+//
+
+export interface ServerRequestGetRaid {
+    status: 'get-raid';
+    result: 'error' | RaidStatePayload;
+    callbackID?: string;
+}
+
+export interface ServerRequestGetRaidLeaderboard {
+    status: 'get-raid-leaderboard';
+    result:
+        | 'error'
+        | 'no-season'
+        | {
+              seasonID: number;
+              /** Top players by damage of the current season */
+              players: RaidLeaderboardPlayer[];
+              /** Current user's data if not in the top, null otherwise or without damage */
+              self: RaidLeaderboardPlayer | null;
+          };
+    callbackID?: string;
+}
+
+export interface ServerRequestGetRaidFeed {
+    status: 'get-raid-feed';
+    result: 'error' | { events: RaidFeedEvent[] };
+    callbackID?: string;
+}
+
+export interface ServerRequestGetRaidHistory {
+    status: 'get-raid-history';
+    result: 'error' | { seasons: RaidHistoryEntry[] };
+    callbackID?: string;
+}
+
+export interface ServerRequestClaimRaidReward {
+    status: 'claim-raid-reward';
+    /**
+     * - 'not-claimable': boss still standing and season not closed, no damage dealt, or left the raid
+     * - 'nothing': the season carries no reward for this outcome
+     */
+    result: 'error' | 'not-claimable' | 'already-claimed' | 'nothing' | { rewards: Reward[]; newOx: number };
+    callbackID?: string;
+}
+
+export interface ServerRequestRaidHealAd {
+    status: 'raid-heal-ad';
+    /** 'already-used': one ad per heal phase; 'limit-reached': daily quota */
+    result: 'ok' | 'error' | 'no-season' | 'locked' | 'not-healing' | 'limit-reached' | 'already-used';
+    /** With 'ok': unix seconds of the new heal end (null when the heal is over) */
+    healEnd?: number | null;
+    /** Heal ads left today */
+    remaining?: number;
+    simulation?: RaidSimulation;
+    /** With 'ok': the skips of the season after the purchase, authoritative (replaces the local list) */
+    skips?: RaidSkip[];
+    callbackID?: string;
+}
+
+export interface ServerRequestRaidHealOx {
+    status: 'raid-heal-ox';
+    result: 'ok' | 'error' | 'no-season' | 'locked' | 'not-healing' | 'quote-changed' | 'not-enough-ox';
+    /** With 'quote-changed': the price the server computed */
+    price?: number;
+    /** With 'ok': new balance */
+    ox?: number;
+    simulation?: RaidSimulation;
+    /** With 'ok': the skips of the season after the purchase, authoritative (replaces the local list) */
+    skips?: RaidSkip[];
+    callbackID?: string;
+}
+
+//
 // Leaderboard
 //
 
@@ -719,6 +812,13 @@ export type TCPServerRequest =
     | ServerRequestRemoveFriend
     | ServerRequestBlockFriend
     | ServerRequestUnblockFriend
+    | ServerRequestGetRaid
+    | ServerRequestGetRaidLeaderboard
+    | ServerRequestGetRaidFeed
+    | ServerRequestGetRaidHistory
+    | ServerRequestClaimRaidReward
+    | ServerRequestRaidHealAd
+    | ServerRequestRaidHealOx
     | ServerRequestGetLeaderboard
     | ServerRequestGetShop
     | ServerRequestBuyIAP

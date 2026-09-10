@@ -440,6 +440,53 @@ export interface ClientRequestUnblockFriend {
 }
 
 //
+// Raids
+//
+
+export interface ClientRequestGetRaid {
+    action: 'get-raid';
+    callbackID?: string;
+}
+
+export interface ClientRequestGetRaidLeaderboard {
+    action: 'get-raid-leaderboard';
+    /** Number of players to retrieve. Defaults to 100, max 100 */
+    limit?: number;
+    callbackID?: string;
+}
+
+export interface ClientRequestGetRaidFeed {
+    action: 'get-raid-feed';
+    /** Number of events to retrieve. Defaults to 50, max 100 */
+    limit?: number;
+    callbackID?: string;
+}
+
+export interface ClientRequestGetRaidHistory {
+    action: 'get-raid-history';
+    callbackID?: string;
+}
+
+export interface ClientRequestRaidHealAd {
+    action: 'raid-heal-ad';
+    callbackID?: string;
+}
+
+export interface ClientRequestClaimRaidReward {
+    action: 'claim-raid-reward';
+    /** Season whose reward is claimed: the running one, or any past one from the raid history */
+    seasonID: number;
+    callbackID?: string;
+}
+
+export interface ClientRequestRaidHealOx {
+    action: 'raid-heal-ox';
+    /** Price (ox) the user confirmed: accepted when the server price is lower or equal, 'quote-changed' otherwise */
+    expectedPrice: number;
+    callbackID?: string;
+}
+
+//
 // Leaderboard
 //
 
@@ -554,6 +601,13 @@ export type TCPClientRequest =
     | ClientRequestRemoveFriend
     | ClientRequestBlockFriend
     | ClientRequestUnblockFriend
+    | ClientRequestGetRaid
+    | ClientRequestGetRaidLeaderboard
+    | ClientRequestGetRaidFeed
+    | ClientRequestGetRaidHistory
+    | ClientRequestClaimRaidReward
+    | ClientRequestRaidHealAd
+    | ClientRequestRaidHealOx
     | ClientRequestGetLeaderboard
     | ClientRequestGetShop
     | ClientRequestBuyIAP

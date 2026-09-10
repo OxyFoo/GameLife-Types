@@ -1,6 +1,6 @@
 import { Rarities } from '@/Global/Rarities';
 import { Stuff } from '@/Data/User/Inventory';
-import { ItemID } from '@/Data/App/Items';
+import { ItemID, ItemSlot } from '@/Data/App/Items';
 
 export type ChestRarity = Exclude<Rarities, 'legendary'>;
 
@@ -37,6 +37,8 @@ interface ItemReward {
 interface ChestRawReward {
     Type: 'Chest';
     ChestRarity: ChestRarity;
+    /** Restrict the drawn item to one slot (targeted chest) */
+    Slot?: ItemSlot;
 }
 interface ChestReward {
     Type: 'Chest';
@@ -44,8 +46,19 @@ interface ChestReward {
     Stuff: Stuff;
 }
 
-export type RawReward = TitleRawReward | OXRawReward | ItemRawReward | ChestRawReward;
+interface AchievementRawReward {
+    Type: 'Achievement';
+    AchievementID: number;
+}
+interface AchievementReward {
+    Type: 'Achievement';
+    AchievementID: number;
+    /** Already in the inventory: nothing was added */
+    AlreadyOwned: boolean;
+}
 
-export type Reward = TitleReward | OXReward | ItemReward | ChestReward;
+export type RawReward = TitleRawReward | OXRawReward | ItemRawReward | ChestRawReward | AchievementRawReward;
+
+export type Reward = TitleReward | OXReward | ItemReward | ChestReward | AchievementReward;
 
 export type RewardType = Reward['Type'];

@@ -1,6 +1,6 @@
 import { OSKeys } from '@/Global/OS';
 
-export type AdNames = 'shop' | 'activity-bonus';
+export type AdNames = 'shop' | 'activity-bonus' | 'raid-heal';
 
 export type AdType = 'rewarded' | 'interstitial';
 
