@@ -29,8 +29,8 @@ import type {
 
 export const RAID_MIN_LEVEL = 10;
 export const STAT_MULT_MAX = 25;
-/** Stat points for one multiplier unit (a useful activity brings 1 point per stat, 7 in total) */
-export const STAT_POINTS_PER_UNIT = 250;
+/** Stat points for one multiplier unit: x25 at 10 000 points (a useful activity brings 1 point per stat, 7 in total) */
+export const STAT_POINTS_PER_UNIT = 400;
 export const BASE_BUDGET_MINUTES = 48 * 60;
 export const BASE_HEAL_SECONDS = 24 * 60 * 60;
 /** Critical chance per multiplier unit: 0% at 0, 50% at the cap */
