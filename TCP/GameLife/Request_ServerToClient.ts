@@ -174,6 +174,13 @@ export interface ServerRequestGetAppData {
     data: Nullable<DataTypes> | null;
     hashes: DataHashes | null;
     iapSkus?: string[];
+    /**
+     * DevEye public measurement key, sent at every fetch like `iapSkus` rather than diffed by hash:
+     * it is one short string, and the app must be able to learn that it has been revoked.
+     * An empty string switches the audience measurement off; `undefined` means a server that does
+     * not know about it, which the app reads as "keep what you have" rather than "stop".
+     */
+    deveyeKey?: string;
     callbackID?: string;
 }
 
