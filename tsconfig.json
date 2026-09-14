@@ -11,9 +11,8 @@
     "strict": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
-    "moduleResolution": "Node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
-    "baseUrl": ".",
     "paths": {
       "@/*": ["./*"]
     },
