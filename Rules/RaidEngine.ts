@@ -6,7 +6,7 @@
  * knows (critical draw seed, boss progress); the app only previews.
  *
  * Rules (product owner, 2026-09-08):
- * - A season is a whole UTC month; every account of level 10+ takes part automatically.
+ * - A season is a whole UTC month; every account of level 5+ takes part automatically.
  * - Only useful activities score (same rule as the ox: `OxEconomy.UsefulActivities`).
  * - Fight phase: a budget of useful activity minutes (48h x endurance); when it runs out the
  *   character heals for real time (24h / social), then fights again with a full budget.
@@ -27,7 +27,7 @@ import type {
     RaidSkipInput
 } from '@/Data/User/Raids';
 
-export const RAID_MIN_LEVEL = 10;
+export const RAID_MIN_LEVEL = 5;
 export const STAT_MULT_MAX = 25;
 /** Stat points for one multiplier unit: x25 at 10 000 points (a useful activity brings 1 point per stat, 7 in total) */
 export const STAT_POINTS_PER_UNIT = 400;
