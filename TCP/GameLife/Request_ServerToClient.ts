@@ -136,12 +136,7 @@ export interface ServerRequestSetLang {
 export interface ServerRequestSetUsername {
     status: 'set-username';
     result:
-        | 'ok'
-        | 'okButNotConfirmed'
-        | 'usernameIsAlreadyUsed'
-        | 'usernameIsAlreadyChanged'
-        | 'invalidUsername'
-        | 'error';
+        'ok' | 'okButNotConfirmed' | 'usernameIsAlreadyUsed' | 'usernameIsAlreadyChanged' | 'invalidUsername' | 'error';
     callbackID?: string;
 }
 
