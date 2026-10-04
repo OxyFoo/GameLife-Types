@@ -4,6 +4,7 @@ import { Contributor } from './Contributors';
 import { DailyQuestReward } from './DailyQuestReward';
 import { IAP } from './IAP';
 import { Item } from './Items';
+import { ItemStatRange } from './ItemStatRanges';
 import { MissionType } from './Missions';
 import { Quote } from './Quotes';
 import { Skill } from './Skills';
@@ -18,6 +19,7 @@ export interface DataTypes {
     dailyQuestsRewards: DailyQuestReward[];
     iap: IAP[];
     items: Item[];
+    itemStatRanges: ItemStatRange[];
     missions: MissionType[];
     quotes: Quote[];
     skills: Skill[];
