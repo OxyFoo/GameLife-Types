@@ -764,6 +764,33 @@ export interface ServerRequestSellStuff {
     callbackID?: string;
 }
 
+export interface ServerRequestForgeStuff {
+    status: 'forge-stuff';
+    result:
+        | 'ok'
+        | 'invalid-request'
+        | 'item-not-found'
+        | 'catalyst-not-found'
+        | 'catalyst-equipped'
+        | 'max-rarity'
+        | 'forge-unavailable'
+        | 'not-enough-ox'
+        | 'error';
+    /** With 'ok': the roll went through, the catalysts are gone and the cost is paid, whatever `success` */
+    success?: boolean;
+    /** Chance that was rolled, fraction of 1 */
+    chance?: number;
+    /** Ox paid for this attempt */
+    cost?: number;
+    /** The main copy after the attempt (unchanged on failure) */
+    stuff?: Stuff;
+    /** New total Ox amount after the attempt */
+    ox?: number;
+    /** New inventory data token */
+    token?: number;
+    callbackID?: string;
+}
+
 export type TCPServerRequest =
     | ServerRequestHandshake
     | ServerRequestCheckIntegrity
@@ -832,4 +859,5 @@ export type TCPServerRequest =
     | ServerRequestBuyRandomChest
     | ServerRequestBuyTargetedChest
     | ServerRequestBuyDailyDeal
-    | ServerRequestSellStuff;
+    | ServerRequestSellStuff
+    | ServerRequestForgeStuff;

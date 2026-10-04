@@ -179,6 +179,15 @@ export interface ClientRequestSellStuff {
     callbackID?: string;
 }
 
+export interface ClientRequestForgeStuff {
+    action: 'forge-stuff';
+    /** The copy to upgrade (inventory item ID), may be equipped */
+    stuffID: number;
+    /** 1 or 2 other copies of the account, distinct, not equipped: consumed whatever the outcome */
+    catalystIDs: number[];
+    callbackID?: string;
+}
+
 //
 // Ads
 //
@@ -570,6 +579,7 @@ export type TCPClientRequest =
     | ClientRequestGetAvatar
     | ClientRequestSaveAvatar
     | ClientRequestSellStuff
+    | ClientRequestForgeStuff
     | ClientRequestGetAds
     | ClientRequestWatchAd
     | ClientRequestBonusActivityOx
