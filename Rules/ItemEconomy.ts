@@ -19,6 +19,26 @@ import type { Rarities } from '@/Global/Rarities';
 import { ALL_RARITIES } from '@/Global/Rarities';
 import { Mulberry32 } from '@/Rules/Random';
 
+/** `Items.Value` by rarity (migration 2026-09-13): the value of a copy the forge raised above its item */
+export const RARITY_VALUES: Readonly<Record<Rarities, number>> = {
+    common: 222,
+    rare: 666,
+    epic: 2000,
+    legendary: 6000
+};
+
+export function ValueOfRarity(rarity: Rarities): number {
+    return RARITY_VALUES[rarity];
+}
+
+/**
+ * Value of one copy: the item's own value at its definition rarity (set by hand in the database),
+ * the value of its rarity once the forge raised it
+ */
+export function StuffValue(item: Pick<Item, 'Value' | 'Rarity'>, copyRarity: Rarities): number {
+    return copyRarity === item.Rarity ? item.Value : ValueOfRarity(copyRarity);
+}
+
 /** Player gets half of the item value when selling */
 export const SELL_PRICE_FACTOR = 0.5;
 
