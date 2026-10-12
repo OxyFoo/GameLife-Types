@@ -7,6 +7,9 @@
  * Rules (product owner, 2026-10-03):
  * - An attempt takes a main copy and 1 or 2 catalysts (other copies of the player, not equipped).
  *   The catalysts are consumed whatever the outcome; the main copy is never lost.
+ * - A catalyst has the same rarity as the main copy (owner, 2026-10-07): raising a rare takes rares.
+ * - A copy of a starter item (the outfit of a new account) is never a catalyst: it can be neither
+ *   sold nor lost. It can be the main copy; it never carries stats (`ItemStats.RangeForRarity`).
  * - Base chance of success: 30% with one catalyst, 60% with two. The dexterity of the player (with
  *   the bonus of the equipped copies) adds up to 30%, linearly up to 25 000 points. Capped at 100%.
  * - Every attempt costs ox, by the current rarity of the main copy: 30 from common, 60 from rare,
@@ -48,6 +51,11 @@ export function ForgeCost(rarity: Rarities): number | null {
 /** Whether a copy of this rarity can be forged today */
 export function IsForgeOpen(rarity: Rarities): boolean {
     return FORGE_OPEN_FROM.includes(rarity) && NextRarity(rarity) !== null && ForgeCost(rarity) !== null;
+}
+
+/** Whether a copy of this rarity can serve as a catalyst for a main copy of `main` (same rarity) */
+export function IsCatalystCompatible(main: Rarities, catalyst: Rarities): boolean {
+    return main === catalyst;
 }
 
 /** Dexterity bonus in percent: linear up to the cap, 0 for a bad input */

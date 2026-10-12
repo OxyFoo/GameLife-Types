@@ -753,7 +753,8 @@ export interface ServerRequestBuyDailyDeal {
 
 export interface ServerRequestSellStuff {
     status: 'sell-stuff';
-    result: 'ok' | 'invalid-item' | 'item-not-found' | 'item-equipped' | 'error';
+    /** 'item-starter': a copy of the starter outfit is never sold */
+    result: 'ok' | 'invalid-item' | 'item-not-found' | 'item-equipped' | 'item-starter' | 'error';
     /** New total Ox amount after sell */
     ox?: number;
     callbackID?: string;
@@ -767,6 +768,10 @@ export interface ServerRequestForgeStuff {
         | 'item-not-found'
         | 'catalyst-not-found'
         | 'catalyst-equipped'
+        /** A catalyst of another rarity than the main copy */
+        | 'catalyst-rarity'
+        /** A catalyst from the starter outfit, which can never be lost */
+        | 'catalyst-starter'
         | 'max-rarity'
         | 'forge-unavailable'
         | 'not-enough-ox'

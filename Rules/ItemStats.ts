@@ -77,12 +77,17 @@ function UniformInt(random: () => number, min: number, max: number): number {
  * definition rarity, the row of the rarity otherwise. Assumption (owner, 2026-10-03): the override
  * holds only at the item's own rarity, a copy the forge raised follows the table. Null when the
  * table has no row for the rarity.
+ * A starter item (owner, 2026-10-07) is always [0; 0], at every rarity: its copies are created,
+ * backfilled and raised by the forge without any stat.
  */
 export function RangeForRarity(
-    item: Pick<Item, 'Rarity' | 'StatsRange'>,
+    item: Pick<Item, 'Rarity' | 'StatsRange' | 'Starter'>,
     rarity: Rarities,
     ranges: readonly ItemStatRange[]
 ): ItemStatsRange | null {
+    if (item.Starter) {
+        return { min: 0, max: 0 };
+    }
     if (rarity === item.Rarity && item.StatsRange !== null) {
         return item.StatsRange;
     }

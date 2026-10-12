@@ -12,6 +12,8 @@
  *   weight never comes out, so never legendary) then one buyable item of that rarity, from the date
  *   only: every player sees the same deals and the displayed price is the one charged.
  * - A daily deal is sold at a fixed price by rarity: common 180, rare 555, epic 1 800.
+ * - A starter item (owner, 2026-10-07) is given once at the account creation and is obtainable
+ *   nowhere else: no daily deal, no chest, no reward (`IsObtainable`).
  */
 
 import type { Item } from '@/Data/App/Items';
@@ -94,7 +96,12 @@ export function DailyDealRarityFallbacks(rarity: Rarities): Rarities[] {
     return ALL_RARITIES.slice(0, ALL_RARITIES.indexOf(rarity) + 1).reverse();
 }
 
-export type DailyDealCandidate = Pick<Item, 'ID' | 'Rarity' | 'Buyable'>;
+/** Whether a copy of the item can come from anything but the account creation (shop, chests, rewards) */
+export function IsObtainable(item: Pick<Item, 'Starter'>): boolean {
+    return !item.Starter;
+}
+
+export type DailyDealCandidate = Pick<Item, 'ID' | 'Rarity' | 'Buyable' | 'Starter'>;
 
 /**
  * The daily deals for a seed: `DAILY_DEAL_COUNT` slots, each rolling its rarity then one buyable
@@ -103,7 +110,9 @@ export type DailyDealCandidate = Pick<Item, 'ID' | 'Rarity' | 'Buyable'>;
  * Pure: the same seed and items give the same deals, whatever the order of `items`.
  */
 export function PickDailyDeals<T extends DailyDealCandidate>(items: T[], seed: number): T[] {
-    const pool = items.filter((item) => item.Buyable).sort((a, b) => (a.ID < b.ID ? -1 : a.ID > b.ID ? 1 : 0));
+    const pool = items
+        .filter((item) => item.Buyable && IsObtainable(item))
+        .sort((a, b) => (a.ID < b.ID ? -1 : a.ID > b.ID ? 1 : 0));
     const random = Mulberry32(seed);
 
     const deals: T[] = [];

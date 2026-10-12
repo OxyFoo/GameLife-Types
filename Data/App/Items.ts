@@ -35,4 +35,9 @@ export interface Item {
     StatsRange: ItemStatsRange | null;
     /** Largest list of stats a copy may carry; null = every stat */
     StatsKeys: StatKey[] | null;
+    /**
+     * Part of the starter outfit (`*_00`): given once at the account creation and nowhere else,
+     * never sold, never a forge catalyst, never any stat (even raised by the forge)
+     */
+    Starter: boolean;
 }

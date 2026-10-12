@@ -183,7 +183,10 @@ export interface ClientRequestForgeStuff {
     action: 'forge-stuff';
     /** The copy to upgrade (inventory item ID), may be equipped */
     stuffID: number;
-    /** 1 or 2 other copies of the account, distinct, not equipped: consumed whatever the outcome */
+    /**
+     * 1 or 2 other copies of the account, distinct, not equipped, of the same rarity as `stuffID`, not
+     * from the starter outfit: consumed whatever the outcome
+     */
     catalystIDs: number[];
     callbackID?: string;
 }
