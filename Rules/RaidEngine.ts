@@ -12,7 +12,7 @@
  *   character heals for real time (24h / social), then fights again with a full budget.
  * - Points: 1 per scored minute x force, doubled on a critical hit (agility); the minutes scored
  *   by an activity are its intersection with the fight phases, capped by the budget.
- * - Stats: x1 at 0, x25 at STAT_POINTS_PER_UNIT x 25; frozen per season by the server.
+ * - Stats: x0 at 0 (force never below 1), x25 at STAT_POINTS_PER_UNIT x 25; frozen per season by the server.
  */
 
 import type { StatsXP } from '@/Class/Experience';
