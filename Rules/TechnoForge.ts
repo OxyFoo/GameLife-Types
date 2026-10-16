@@ -5,14 +5,16 @@
  * the server rolls it and applies it. Both import this very module.
  *
  * Rules (product owner, 2026-10-03):
- * - An attempt takes a main copy and 1 or 2 catalysts (other copies of the player, not equipped).
- *   The catalysts are consumed whatever the outcome; the main copy is never lost.
+ * - An attempt takes a main copy and 0 to 2 catalysts (other copies of the player, not equipped;
+ *   owner, 2026-10-16: the main copy alone is enough). The catalysts are consumed whatever the
+ *   outcome; the main copy is never lost.
  * - A catalyst has the same rarity as the main copy (owner, 2026-10-07): raising a rare takes rares.
  * - A copy of a starter item (the outfit of a new account) is never a catalyst: it can be neither
  *   sold nor lost. It can be the main copy; it never carries stats (`ItemStats.RangeForRarity`).
- * - Base chance of success: 30% with one catalyst, 60% with two. The dexterity of the player (with
- *   the bonus of the equipped copies) adds up to 30%, linearly up to 10 000 points, the cap of every
- *   stat (owner, 2026-10-12: same as the raids). Capped at 100%.
+ * - Base chance of success: 30% with the main copy alone, 60% with one catalyst, 90% with two
+ *   (owner, 2026-10-16). The dexterity of the player (with the bonus of the equipped copies) adds up
+ *   to 30%, linearly up to 10 000 points, the cap of every stat (owner, 2026-10-12: same as the
+ *   raids). Capped at 100%.
  * - Every attempt costs ox, by the current rarity of the main copy: 30 from common, 60 from rare,
  *   120 from epic. The epic → legendary step is priced but not open yet.
  * - On success the main copy gains one rarity and its stats are re-rolled with the same shape
@@ -23,11 +25,11 @@ import type { Rarities } from '@/Global/Rarities';
 import { ALL_RARITIES } from '@/Global/Rarities';
 import { STAT_MULT_MAX, STAT_POINTS_PER_UNIT } from '@/Rules/RaidEngine';
 
-export const FORGE_CATALYSTS_MIN = 1;
+export const FORGE_CATALYSTS_MIN = 0;
 export const FORGE_CATALYSTS_MAX = 2;
 
-/** Base chance of success by number of catalysts, in percent */
-export const FORGE_BASE_CHANCE: Readonly<Record<number, number>> = { 1: 30, 2: 60 };
+/** Base chance of success by number of catalysts, in percent: the main copy alone, then +30% each */
+export const FORGE_BASE_CHANCE: Readonly<Record<number, number>> = { 0: 30, 1: 60, 2: 90 };
 
 /** Dexterity bonus, in percent: 0 at 0 point, FORGE_DEX_BONUS_MAX at FORGE_DEX_CAP points or more */
 export const FORGE_DEX_BONUS_MAX = 30;
@@ -75,7 +77,7 @@ export function ForgeDexBonus(dex: number): number {
 }
 
 /**
- * Chance of success as a fraction of 1, capped at 1; 0 for a number of catalysts out of [1; 2].
+ * Chance of success as a fraction of 1, capped at 1; 0 for a number of catalysts out of [0; 2].
  * The percents are added before the single division: 60% + 30% is exactly 0.9.
  */
 export function ForgeChance(catalysts: number, dex: number): number {
