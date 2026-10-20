@@ -209,6 +209,8 @@ export interface RaidHistoryEntry {
     startTime: number;
     endTime: number;
     defeated: boolean;
+    /** Unix seconds of the defeat, null when the boss survived: the raid ended there for the players */
+    defeatedAt: number | null;
     participantsCount: number;
     progress: number;
     /** Rewards that apply: the full list when the boss went down, the consolation one otherwise */
